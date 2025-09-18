@@ -59,6 +59,13 @@
             padding: 1.5rem 0;
         }
         
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem 0;
+                justify-content: space-between;
+            }
+        }
+        
         .logo {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
@@ -449,15 +456,16 @@
         @media (max-width: 768px) {
             .header-container {
                 padding: 1rem 0;
+                justify-content: space-between;
             }
             
             .logo img {
-                height: 40px;
-                margin-right: 10px;
+                height: 35px;
+                margin-right: 8px;
             }
             
             .logo {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
             
             nav ul {
@@ -485,6 +493,11 @@
             
             .mobile-menu-btn {
                 display: block;
+                order: 2;
+            }
+            
+            .logo {
+                order: 1;
             }
             
             .hero-section {
@@ -525,13 +538,17 @@
                 padding: 0 5px;
             }
             
+            .header-container {
+                padding: 0.8rem 0;
+            }
+            
             .logo img {
-                height: 35px;
-                margin-right: 8px;
+                height: 30px;
+                margin-right: 6px;
             }
             
             .logo {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
             }
             
             .hero-section {
