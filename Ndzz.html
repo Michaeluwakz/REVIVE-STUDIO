@@ -60,6 +60,18 @@
             width: 100%;
         }
         
+        .logo-container {
+            display: flex;
+            align-items: center;
+            flex: 0 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
         @media (max-width: 768px) {
             .header-container {
                 padding: 1rem 0;
@@ -457,6 +469,16 @@
                 justify-content: space-between;
             }
             
+            .logo-container {
+                flex: 0 0 auto;
+                order: 1;
+            }
+            
+            .nav-container {
+                order: 2;
+                gap: 1rem;
+            }
+            
             .logo img {
                 height: 35px;
                 margin-right: 8px;
@@ -684,6 +706,10 @@
             
             .header-container {
                 padding: 0.8rem 0;
+            }
+            
+            .logo-container {
+                flex: 0 0 auto;
             }
             
             .logo img {
@@ -943,23 +969,27 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">
-                <img src="public/image/image.png" alt="Nailed By Nadzz Logo">
-                Nailed By Nadzz
-            </a>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav>
-                <ul id="menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="booking.html">Book Now</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="policies.html">Policies</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <div class="logo-container">
+                <a href="#" class="logo">
+                    <img src="public/image/image.png" alt="Nailed By Nadzz Logo">
+                    Nailed By Nadzz
+                </a>
+            </div>
+            <div class="nav-container">
+                <nav>
+                    <ul id="menu">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="booking.html">Book Now</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="policies.html">Policies</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 
