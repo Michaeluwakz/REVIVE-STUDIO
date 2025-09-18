@@ -57,6 +57,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 0;
+            width: 100%;
         }
         
         @media (max-width: 768px) {
@@ -75,6 +76,7 @@
             align-items: center;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             font-weight: 600;
+            flex-shrink: 0;
         }
         
         .logo img {
@@ -122,12 +124,12 @@
         .mobile-menu-btn {
             display: none;
             background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            font-size: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            font-size: 1.2rem;
             color: white;
             cursor: pointer;
-            padding: 8px 12px;
+            padding: 6px 8px;
             transition: all 0.3s ease;
         }
         
@@ -494,10 +496,12 @@
             .mobile-menu-btn {
                 display: block;
                 order: 2;
+                flex-shrink: 0;
             }
             
             .logo {
                 order: 1;
+                flex-shrink: 0;
             }
             
             .hero-section {
