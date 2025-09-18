@@ -1,0 +1,14 @@
+{
+  "name": "nailed-by-nadzz",
+  "version": "1.0.0",
+  "description": "Nailed By Nadzz - Nails & Beauty Salon Website",
+  "main": "Ndzz.html",
+  "scripts": {
+    "start": "python3 -m http.server 4000",
+    "dev": "python3 -m http.server 4000",
+    "serve": "python3 -m http.server 4000"
+  },
+  "keywords": ["nail-salon", "beauty", "website"],
+  "author": "Nailed By Nadzz",
+  "license": "MIT"
+}

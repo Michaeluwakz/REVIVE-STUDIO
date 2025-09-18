@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Booking Policies | Nailed By Nadzz | Nails & Beauty Salon | Leeds UK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #EEDABA;
+            --burnt-orange: #C46D26;
+            --dark-brown: #2C1810;
+            --light-brown: #EEDBB9;
+            --tan: #EEDBB9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-brown);
+            background-color: var(--cream);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+            box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+        }
+        
+        .logo img {
+            height: 50px;
+            width: auto;
+            margin-right: 15px;
+            filter: brightness(1.1) contrast(1.2) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+            transition: all 0.3s ease;
+        }
+        
+        .logo img:hover {
+            filter: brightness(1.3) contrast(1.3) drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));
+            transform: scale(1.05);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav ul li a:hover {
+            color: var(--cream);
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 0;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(44, 24, 16, 0.8), rgba(196, 109, 38, 0.8)), 
+                        url('https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Policies Section */
+        .policies {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8f6f3 0%, #ffffff 50%, #f5f2ed 100%);
+            position: relative;
+        }
+        
+        .policies::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="subtle-dots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="0.5" fill="%23C46D26" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23subtle-dots)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .policies-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .policy-card {
+            background: white;
+            padding: 2.5rem 3rem;
+            border-radius: 16px;
+            text-align: left;
+            box-shadow: 0 8px 32px rgba(44, 24, 16, 0.08);
+            border: 1px solid rgba(196, 109, 38, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .policy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--burnt-orange);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .policy-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 48px rgba(44, 24, 16, 0.12);
+            border-color: rgba(196, 109, 38, 0.15);
+        }
+
+        .policy-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .policy-icon {
+            font-size: 2.5rem;
+            color: var(--burnt-orange);
+            margin-right: 1.5rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(196, 109, 38, 0.1) 0%, rgba(196, 109, 38, 0.05) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .policy-title {
+            color: var(--dark-brown);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .policy-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .policy-card p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .policy-card p br {
+            line-height: 1.8;
+        }
+
+        /* Special styling for lateness card */
+        .policy-card:nth-child(2) .policy-content p {
+            font-weight: 500;
+        }
+
+        .policy-card:nth-child(2) .policy-content p br {
+            display: block;
+            margin: 0.3rem 0;
+        }
+
+        /* Need to Know Section */
+        .need-to-know {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--dark-brown) 0%, #3a2418 100%);
+            position: relative;
+        }
+        
+        .need-to-know::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23EEDABA" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .need-to-know-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .checklist-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .checklist-item i {
+            color: var(--burnt-orange);
+            font-size: 1.5rem;
+            margin-top: 0.3rem;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-brown) 100%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(196, 109, 38, 0.3);
+        }
+
+        .checklist-item p {
+            color: var(--dark-brown);
+            margin: 0;
+            line-height: 1.6;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .nail-lengths {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .nail-lengths h3 {
+            color: var(--dark-brown);
+            margin-bottom: 2.5rem;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .nail-lengths h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--burnt-orange), #D47A2A);
+            border-radius: 2px;
+        }
+
+        .length-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .length-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-brown) 100%);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .length-option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(196, 109, 38, 0.2);
+        }
+
+        .nail-preview {
+            width: 50px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 100%);
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(196, 109, 38, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .nail-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .nail-preview.short {
+            height: 45px;
+        }
+
+        .nail-preview.medium {
+            height: 55px;
+        }
+
+        .nail-preview.long {
+            height: 70px;
+        }
+
+        .nail-preview.xtra-long {
+            height: 90px;
+        }
+
+        .length-option span {
+            color: var(--dark-brown);
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Image Placeholder Sections */
+        .image-section {
+            padding: 4rem 0;
+            background: white;
+            position: relative;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .image-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(44, 24, 16, 0.1);
+            transition: all 0.4s ease;
+            height: 300px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-brown) 100%);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--burnt-orange);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .image-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(238, 218, 186, 0.8) 0%, rgba(238, 219, 185, 0.8) 100%);
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .image-card:hover::after,
+        .image-card:active::after {
+            opacity: 0;
+        }
+        
+        /* Touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            .image-card:active::after {
+                opacity: 0;
+            }
+        }
+        
+        .image-card .card-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .image-card i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .image-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(44, 24, 16, 0.2);
+        }
+        
+        .image-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .image-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        /* Back Button */
+        .back-button {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--burnt-orange);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-brown);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-brown);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--burnt-orange);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .footer-section p, .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--burnt-orange);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--burnt-orange);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            .policies-grid {
+                gap: 2rem;
+            }
+            
+            .need-to-know-content {
+                gap: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem 0;
+            }
+            
+            .logo img {
+                height: 40px;
+                margin-right: 10px;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 8px 25px rgba(196, 109, 38, 0.4);
+                backdrop-filter: blur(10px);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 0.5rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-section {
+                height: 50vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .policies {
+                padding: 4rem 0;
+            }
+
+            .need-to-know-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .policies-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .policy-card {
+                padding: 2rem 2.5rem;
+                min-height: 250px;
+            }
+
+            .policy-header {
+                flex-direction: column;
+                text-align: center;
+                margin-bottom: 1rem;
+                padding-bottom: 0.8rem;
+            }
+
+            .policy-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .length-options {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .length-option {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .image-card {
+                height: 250px;
+            }
+            
+            .checklist-item {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 0 5px;
+            }
+            
+            .logo img {
+                height: 35px;
+                margin-right: 8px;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .hero-section {
+                height: 40vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .policies {
+                padding: 3rem 0;
+            }
+
+            .policy-card {
+                padding: 1.5rem 2rem;
+                min-height: 220px;
+            }
+
+            .policy-header {
+                margin-bottom: 0.8rem;
+                padding-bottom: 0.6rem;
+            }
+
+            .policy-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 2rem;
+            }
+
+            .policy-title {
+                font-size: 1.2rem;
+            }
+
+            .checklist-item {
+                padding: 1.2rem;
+            }
+
+            .nail-lengths {
+                padding: 2rem;
+            }
+            
+            .image-card {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .policy-card {
+                padding: 1rem 1.5rem;
+            }
+            
+            .checklist-item {
+                padding: 1rem;
+            }
+            
+            .nail-lengths {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="Ndzz.html" class="logo">
+                <img src="public/image/image.png" alt="Nailed By Nadzz Logo">
+                Nailed By Nadzz
+            </a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="menu">
+                    <li><a href="Ndzz.html">Home</a></li>
+                    <li><a href="Ndzz.html#services">Services</a></li>
+                    <li><a href="Ndzz.html#booking">Book Now</a></li>
+                    <li><a href="Ndzz.html#about">About Us</a></li>
+                    <li><a href="Ndzz.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Booking Policies</h1>
+                <p>Everything you need to know for your perfect nail experience</p>
+            </div>
+        </section>
+
+        <!-- Image Section 1 -->
+        <section class="image-section">
+            <div class="container">
+                <div class="image-grid">
+                    <div class="image-card" style="background-image: url('public/image/IMG_3019.jpg');">
+                        <div class="card-content">
+                            <i class="fas fa-hand-holding-heart"></i>
+                            <span>Professional Care</span>
+                        </div>
+                    </div>
+                    <div class="image-card" style="background-image: url('public/image/IMG_3020.jpg');">
+                        <div class="card-content">
+                            <i class="fas fa-star"></i>
+                            <span>Premium Quality</span>
+                        </div>
+                    </div>
+                    <div class="image-card" style="background-image: url('public/image/IMG_3021.jpg');">
+                        <div class="card-content">
+                            <i class="fas fa-gem"></i>
+                            <span>Luxury Experience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Policies Section -->
+        <section class="policies">
+            <div class="container">
+                <div class="policies-grid">
+                    <div class="policy-card">
+                        <div class="policy-header">
+                            <div class="policy-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <h3 class="policy-title">Payment</h3>
+                        </div>
+                        <div class="policy-content">
+                            <p>A non-refundable deposit of £15 is required to secure a booking, which is deducted from the total price. Booking confirmation emails will contain payment details.</p>
+                        </div>
+                    </div>
+                    <div class="policy-card">
+                        <div class="policy-header">
+                            <div class="policy-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3 class="policy-title">Lateness</h3>
+                        </div>
+                        <div class="policy-content">
+                            <p>Grace periods are given, but late fees apply afterwards:<br>
+                            10 mins = £10<br>
+                            15 mins = £15<br>
+                            20 mins = £20<br>
+                            Appointments may be cancelled if lateness interferes with other appointments.</p>
+                        </div>
+                    </div>
+                    <div class="policy-card">
+                        <div class="policy-header">
+                            <div class="policy-icon">
+                                <i class="fas fa-calendar-times"></i>
+                            </div>
+                            <h3 class="policy-title">Cancellations</h3>
+                        </div>
+                        <div class="policy-content">
+                            <p>Cancelling an appointment less than 48 hours in advance incurs a 50% charge. Rescheduling less than 48 hours before an appointment requires another £15 deposit.</p>
+                        </div>
+                    </div>
+                    <div class="policy-card">
+                        <div class="policy-header">
+                            <div class="policy-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h3 class="policy-title">Emergency Appointments</h3>
+                        </div>
+                        <div class="policy-content">
+                            <p>For emergency or out-of-hours appointments, direct message (DM) to enquire. Out-of-hours appointments are for times not found on the calendar and require a £10 fee, to be paid with the deposit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Section 2 -->
+        <section class="image-section">
+            <div class="container">
+                <div class="image-grid">
+                    <div class="image-card" style="background-image: url('public/image/IMG_3022.jpg');">
+                        <div class="card-content">
+                            <i class="fas fa-clock"></i>
+                            <span>Timely Service</span>
+                        </div>
+                    </div>
+                    <div class="image-card" style="background-image: url('public/image/IMG_3023.jpg');">
+                        <div class="card-content">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Safe & Clean</span>
+                        </div>
+                    </div>
+                    <div class="image-card" style="background-image: url('public/image/IMG_3025.jpg');">
+                        <div class="card-content">
+                            <i class="fas fa-heart"></i>
+                            <span>Client Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Need to Know Section -->
+        <section class="need-to-know">
+            <div class="container">
+                <div class="need-to-know-content">
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <i class="fas fa-check"></i>
+                            <p>Please arrive to your appointment with clean bare fingernails, unless you have booked for an acrylic removal service</p>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-check"></i>
+                            <p>We only offer acrylic removal on our own work</p>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-check"></i>
+                            <p>If a nail breaks within 7 days after your appointment we will repair it free of charge</p>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-check"></i>
+                            <p>After this time period repairs are £3.00 per nail</p>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-check"></i>
+                            <p>Sets can take between 2 - 3.5 hrs depending on the design</p>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-check"></i>
+                            <p>No plus ones</p>
+                        </div>
+                    </div>
+                    <div class="nail-lengths">
+                        <h3>Nail Lengths</h3>
+                        <div class="length-options">
+                            <div class="length-option">
+                                <div class="nail-preview short"></div>
+                                <span>SHORT</span>
+                            </div>
+                            <div class="length-option">
+                                <div class="nail-preview medium"></div>
+                                <span>MEDIUM</span>
+                            </div>
+                            <div class="length-option">
+                                <div class="nail-preview long"></div>
+                                <span>LONG</span>
+                            </div>
+                            <div class="length-option">
+                                <div class="nail-preview xtra-long"></div>
+                                <span>XTRA LONG</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Section 3 -->
+        <section class="image-section">
+            <div class="container">
+                <div class="image-grid">
+                    <div class="image-card" style="background-image: url('public/image/IMG_3019.jpg');">
+                        <div class="card-content">
+                            <i class="fas fa-palette"></i>
+                            <span>Creative Designs</span>
+                        </div>
+                    </div>
+                    <div class="image-card" style="background-image: url('public/image/IMG_3020.jpg');">
+                        <div class="card-content">
+                            <i class="fas fa-spa"></i>
+                            <span>Relaxing Environment</span>
+                        </div>
+                    </div>
+                    <div class="image-card" style="background-image: url('public/image/IMG_3021.jpg');">
+                        <div class="card-content">
+                            <i class="fas fa-crown"></i>
+                            <span>Royal Treatment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Back Button -->
+        <div class="container">
+            <div class="back-button">
+                <a href="Ndzz.html" class="btn">Back to Home</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Nailed By Nadzz</h3>
+                    <p>Mid-century modern beauty salon in Leeds offering manicure, hairstyling, and makeup services.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/nailedbynadzz/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 2a Church Road, Leeds, Armley LS12 1TZ</p>
+                    <p><i class="fas fa-phone"></i> +44 113 123 4567</p>
+                    <p><i class="fas fa-envelope"></i> info@nailedbynadzz.co.uk</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Opening Hours</h3>
+                    <p>Monday - Saturday: 9:00 AM - 6:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Nailed By Nadzz. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const menu = document.querySelector('#menu');
+        
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    menu.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

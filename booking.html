@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Book Your Appointment | Nailed By Nadzz | Nails & Beauty Salon | Leeds UK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #EEDABA;
+            --burnt-orange: #C46D26;
+            --dark-brown: #2C1810;
+            --light-brown: #EEDBB9;
+            --tan: #EEDBB9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-brown);
+            background-color: var(--cream);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+            box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+        }
+        
+        .logo img {
+            height: 50px;
+            width: auto;
+            margin-right: 15px;
+            filter: brightness(1.1) contrast(1.2) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+            transition: all 0.3s ease;
+        }
+        
+        .logo img:hover {
+            filter: brightness(1.3) contrast(1.3) drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));
+            transform: scale(1.05);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav ul li a:hover {
+            color: var(--cream);
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 0;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(44, 24, 16, 0.8), rgba(196, 109, 38, 0.8)), 
+                        url('https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Booking Section */
+        .booking {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-brown) 100%);
+            position: relative;
+        }
+        
+        .booking::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23C46D26" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23C46D26" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23C46D26" opacity="0.05"/><circle cx="10" cy="60" r="0.5" fill="%23C46D26" opacity="0.05"/><circle cx="90" cy="40" r="0.5" fill="%23C46D26" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-brown);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--burnt-orange), #D47A2A);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--dark-brown);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+        
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .booking-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(44, 24, 16, 0.1);
+            height: 500px;
+            background: linear-gradient(135deg, var(--light-brown) 0%, var(--cream) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--burnt-orange);
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .booking-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .booking-image:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .booking-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(44, 24, 16, 0.1);
+            border: 1px solid rgba(196, 109, 38, 0.1);
+        }
+        
+        .booking-form h3 {
+            color: var(--dark-brown);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-brown);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--burnt-orange);
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        #service-subcategory-group {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        #service-subcategory-group.show {
+            display: block !important;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--burnt-orange), #D47A2A);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #D47A2A, var(--burnt-orange));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(196, 109, 38, 0.3);
+        }
+        
+        .booking-info {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .booking-info h4 {
+            color: var(--burnt-orange);
+            margin-bottom: 1rem;
+        }
+        
+        .booking-info p {
+            margin-bottom: 0.5rem;
+            color: var(--dark-brown);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-brown);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--burnt-orange);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .footer-section p, .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--burnt-orange);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--burnt-orange);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            .booking-container {
+                gap: 3rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem 0;
+            }
+            
+            .logo img {
+                height: 40px;
+                margin-right: 10px;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 8px 25px rgba(196, 109, 38, 0.4);
+                backdrop-filter: blur(10px);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 0.5rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-section {
+                height: 40vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .booking-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .booking-form {
+                padding: 2rem;
+            }
+            
+            .booking-image {
+                height: 300px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 0 5px;
+            }
+            
+            .logo img {
+                height: 35px;
+                margin-right: 8px;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .hero-section {
+                height: 35vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .booking-form {
+                padding: 1.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+            
+            .booking-info {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            
+            .booking-form {
+                padding: 1rem;
+            }
+            
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 8px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="Ndzz.html" class="logo">
+                <img src="public/image/image.png" alt="Nailed By Nadzz Logo">
+                Nailed By Nadzz
+            </a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="menu">
+                    <li><a href="Ndzz.html">Home</a></li>
+                    <li><a href="Ndzz.html#services">Services</a></li>
+                    <li><a href="booking.html">Book Now</a></li>
+                    <li><a href="Ndzz.html#about">About Us</a></li>
+                    <li><a href="policies.html">Policies</a></li>
+                    <li><a href="Ndzz.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Book Your Appointment</h1>
+                <p>Schedule your perfect nail experience with us</p>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section class="booking">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Schedule Your Visit</h2>
+                    <p>Fill out the form below to book your appointment with our professional team</p>
+                </div>
+                <div class="booking-container">
+                    <div class="booking-image">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="booking-form">
+                        <h3>Book Your Session</h3>
+                        <form id="appointment-form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="service-category">Select Service Category</label>
+                                <select id="service-category" required>
+                                    <option value="">Choose a service category</option>
+                                    <option value="biab-sets">BIAB SETS</option>
+                                    <option value="extras">EXTRAS</option>
+                                    <option value="freestyle-mood-board-sets">FREESTYLE / MOOD BOARD SETS</option>
+                                    <option value="nail-art-sets">NAIL ART SETS</option>
+                                    <option value="natural-sets">NATURAL SETS</option>
+                                    <option value="simple-sets">SIMPLE SETS</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" id="service-subcategory-group" style="display: none;">
+                                <label for="service-subcategory">Select Specific Service</label>
+                                <select id="service-subcategory">
+                                    <option value="">Choose a specific service</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Preferred Date</label>
+                                <input type="date" id="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Preferred Time</label>
+                                <select id="time" required>
+                                    <option value="">Select a time</option>
+                                    <option value="9:00">9:00 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Special Requests or Notes</label>
+                                <textarea id="notes" placeholder="Any specific nail art ideas, allergies, or special requirements..."></textarea>
+                            </div>
+                            <button type="submit" class="btn">Book Now</button>
+                        </form>
+                        
+                        <div class="booking-info">
+                            <h4>Booking Information</h4>
+                            <p><strong>Location:</strong> 2a Church Road, Leeds, Armley LS12 1TZ</p>
+                            <p><strong>Phone:</strong> +44 113 123 4567</p>
+                            <p><strong>Email:</strong> nailedbynadzzbookings@gmail.com</p>
+                            <p><strong>Hours:</strong> Monday - Saturday: 9:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Nailed By Nadzz</h3>
+                    <p>Mid-century modern beauty salon in Leeds offering manicure, hairstyling, and makeup services.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/nailedbynadzz/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 2a Church Road, Leeds, Armley LS12 1TZ</p>
+                    <p><i class="fas fa-phone"></i> +44 113 123 4567</p>
+                    <p><i class="fas fa-envelope"></i> nailedbynadzzbookings@gmail.com</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Opening Hours</h3>
+                    <p>Monday - Saturday: 9:00 AM - 6:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Nailed By Nadzz. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // WhatsApp configuration
+        const WHATSAPP_NUMBER = "447742643648"; // Your WhatsApp number
+        
+        // Service subcategories data
+        const serviceSubcategories = {
+            'biab-sets': [
+                { value: 'plain-biab', text: 'Plain Biab - £35.00', description: 'One biab colour of your choice' },
+                { value: 'french-tip-biab', text: 'French Tip - £38.00', description: 'Created in one colour of your choice' },
+                { value: 'nail-art-tier-1', text: 'Nail Art Tier 1 - £40.00', description: 'Minimal Art - Including animal print, 3D lines, one colour way airbrush, chrome french, abstract art' },
+                { value: 'nail-art-tier-2', text: 'Nail Art Tier 2 - £45.00', description: 'Intermediate art - Including chrome nail art, line art, differing minimal art on nails' },
+                { value: 'nail-art-tier-3', text: 'Nail Art Tier 3 - £55.00', description: 'Advanced art - Including detailed line art, 3D/textured art, overlapping designs, art on chrome' },
+                { value: 'nail-art-tier-4', text: 'Nail Art Tier 4 - £65.00', description: 'Complex art - Detailed designs on most nails, combination over 3 techniques in one set, encapsulated designs' }
+            ],
+            'extras': [
+                { value: 'acrylic-removal', text: 'Acrylic Removal - £15.00', description: 'Soak off and clean up only available on my own work' },
+                { value: 'infill', text: 'Infill - £30.00', description: 'Infill and Tip Rebalance. Design Refresh (+£5-£30) or Design Change (+£5-£45) available. Nail charms/gems not included. Only on my own work, not over 4 weeks old.' }
+            ],
+            'freestyle-mood-board-sets': [
+                { value: 'mood-board-set', text: 'Mood Board Set - £75.00', description: 'Send your mood board via DM after booking. Includes gems and small charms. Full artistic interpretation.' },
+                { value: 'freestyle-set', text: 'Freestyle Set - £65.00', description: 'Full control over colours and design to NbN. Shape decided by you. Gems and Crystals included.' },
+                { value: 'complex-freestyle-set', text: 'Complex Freestyle Set - £75.00', description: 'Intricate designs with mood board inspiration. Shape decided by you. Gems, Charms, 3D Elements, and Airbrush included.' }
+            ],
+            'nail-art-sets': [
+                { value: 'nail-art-tier-1-standalone', text: 'Nail Art Tier 1 - £50.00', description: 'Minimal art - Including animal print, 3D lines, one colour way airbrush, chrome french, abstract art' },
+                { value: 'nail-art-tier-2-standalone', text: 'Nail Art Tier 2 - £55.00', description: 'Intermediate art - Including chrome nail art, line art, differing minimal art on nails' },
+                { value: 'nail-art-tier-3-standalone', text: 'Nail Art Tier 3 - £65.00', description: 'Advanced art - Including detailed line art, 3D/textured art, overlapping designs, art on chrome' },
+                { value: 'nail-art-tier-4-standalone', text: 'Nail Art Tier 4 - £75.00', description: 'Complex art - Detailed designs on most nails, combination over 3 techniques in one set, encapsulated designs' }
+            ],
+            'natural-sets': [
+                { value: 'buffed-manicure', text: 'Buffed Manicure - £20.00', description: 'Full manicure with a buffed finish for a natural shine' },
+                { value: 'gel-manicure', text: 'Gel Manicure - £25.00', description: 'Full manicure with a chosen colour/clear gel finish for extra shine' }
+            ],
+            'simple-sets': [
+                { value: 'acrylic-overlay', text: 'Acrylic Overlay - £30.00', description: 'Acrylic overlay on natural nails' },
+                { value: 'colour-acrylic', text: 'Colour Acrylic - £40.00', description: 'Full set created in one colour of your choice' },
+                { value: 'french-tip-set', text: 'French Tip Set - £45.00', description: 'Created in the colour of your choice' }
+            ]
+        };
+
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const menu = document.querySelector('#menu');
+        
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+        
+        // Service category change handler
+        const serviceCategorySelect = document.getElementById('service-category');
+        const serviceSubcategoryGroup = document.getElementById('service-subcategory-group');
+        const serviceSubcategorySelect = document.getElementById('service-subcategory');
+        
+        serviceCategorySelect.addEventListener('change', function() {
+            const selectedCategory = this.value;
+            const subcategoryGroup = document.getElementById('service-subcategory-group');
+            
+            if (selectedCategory && serviceSubcategories[selectedCategory]) {
+                // Clear existing options
+                serviceSubcategorySelect.innerHTML = '<option value="">Choose a specific service</option>';
+                
+                // Add new options
+                serviceSubcategories[selectedCategory].forEach(service => {
+                    const option = document.createElement('option');
+                    option.value = service.value;
+                    option.textContent = service.text;
+                    option.setAttribute('data-description', service.description);
+                    serviceSubcategorySelect.appendChild(option);
+                });
+                
+                // Show subcategory group with animation
+                subcategoryGroup.style.display = 'block';
+                subcategoryGroup.classList.add('show');
+            } else {
+                // Hide subcategory group
+                subcategoryGroup.style.display = 'none';
+            }
+        });
+        
+        // Service subcategory change handler
+        serviceSubcategorySelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            if (selectedOption && selectedOption.dataset.description) {
+                // You can add a description display here if needed
+                console.log('Selected service:', selectedOption.textContent, 'Description:', selectedOption.dataset.description);
+            }
+        });
+        
+        // Function to format WhatsApp message
+        function formatWhatsAppMessage(formData) {
+            const serviceCategory = formData.service_category.replace(/-/g, ' ').toUpperCase();
+            const serviceSubcategory = formData.service_subcategory || 'Not specified';
+            
+            // Get the selected time text from the dropdown
+            const timeSelect = document.getElementById('time');
+            const selectedTimeText = timeSelect.options[timeSelect.selectedIndex].text;
+            
+            return `NEW BOOKING REQUEST
+
+- Customer Details:
+   NAME: ${formData.name}
+• EMAIL: ${formData.email}
+• PHONE: ${formData.phone}
+
+- Service Requested:
+• Category: ${serviceCategory}
+• Service: ${serviceSubcategory}
+
+- Appointment Details:
+• Date: ${formData.date}
+• Time: ${selectedTimeText}
+
+- Special Requests:
+${formData.notes || 'None'}
+
+---
+Booked via Nailed By Nadzz Website`;
+        }
+        
+        // Form submission
+        const form = document.getElementById('appointment-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                service_category: document.getElementById('service-category').value,
+                service_subcategory: document.getElementById('service-subcategory').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                notes: document.getElementById('notes').value
+            };
+            
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Opening WhatsApp...';
+            submitBtn.disabled = true;
+            
+            // Format the message
+            const message = formatWhatsAppMessage(formData);
+            
+            // Create WhatsApp URL
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            
+            // Open WhatsApp immediately
+            window.open(whatsappUrl, '_blank');
+            
+            // Show success message
+            alert('WhatsApp is opening with your booking details. Please send the message to complete your booking request!');
+            
+            // Reset form
+            form.reset();
+            serviceSubcategoryGroup.style.display = 'none';
+            
+            // Reset button state
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
+        
+        // Set minimum date to today for date picker
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    </script>
+</body>
+</html>
