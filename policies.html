@@ -473,6 +473,41 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
+        /* Mobile Horizontal Scrolling Slideshow */
+        @media (max-width: 768px) {
+            .image-grid {
+                display: flex;
+                overflow-x: auto;
+                gap: 1rem;
+                margin: 1.5rem 0;
+                padding: 0 1rem;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                max-width: none;
+            }
+
+            .image-grid::-webkit-scrollbar {
+                height: 4px;
+            }
+
+            .image-grid::-webkit-scrollbar-track {
+                background: rgba(196, 109, 38, 0.1);
+                border-radius: 2px;
+            }
+
+            .image-grid::-webkit-scrollbar-thumb {
+                background: var(--burnt-orange);
+                border-radius: 2px;
+            }
+
+            .image-card {
+                flex: 0 0 280px;
+                height: 200px;
+                scroll-snap-align: center;
+                border-radius: 15px;
+            }
+        }
         
         .image-card {
             position: relative;
@@ -789,14 +824,7 @@
                 font-size: 0.85rem;
             }
 
-            .image-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .image-card {
-                height: 200px;
-            }
+            /* Image grid styles moved to main mobile section above */
             
             .checklist-item {
                 padding: 1rem;
@@ -918,13 +946,7 @@
                 font-size: 0.8rem;
             }
 
-            .image-grid {
-                gap: 0.8rem;
-            }
-
-            .image-card {
-                height: 160px;
-            }
+            /* Image grid styles handled in main mobile section */
 
             .checklist-item {
                 padding: 0.8rem;
@@ -1033,13 +1055,7 @@
                 font-size: 0.75rem;
             }
 
-            .image-grid {
-                gap: 0.6rem;
-            }
-
-            .image-card {
-                height: 140px;
-            }
+            /* Image grid styles handled in main mobile section */
 
             .checklist-item {
                 padding: 0.6rem;
@@ -1358,6 +1374,55 @@
                 }
             });
         });
+
+        // Mobile Image Slideshow Auto-scroll
+        function initImageSlideshow() {
+            if (window.innerWidth <= 768) {
+                const imageGrids = document.querySelectorAll('.image-grid');
+                
+                imageGrids.forEach(grid => {
+                    let scrollPosition = 0;
+                    const scrollStep = 300; // Width of one image card + gap
+                    const maxScroll = grid.scrollWidth - grid.clientWidth;
+                    let isScrolling = false;
+                    
+                    // Auto-scroll function
+                    function autoScroll() {
+                        if (!isScrolling && maxScroll > 0) {
+                            scrollPosition += scrollStep;
+                            
+                            // Reset to beginning if reached the end
+                            if (scrollPosition >= maxScroll) {
+                                scrollPosition = 0;
+                            }
+                            
+                            grid.scrollTo({
+                                left: scrollPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                    
+                    // Pause auto-scroll when user manually scrolls
+                    grid.addEventListener('scroll', () => {
+                        isScrolling = true;
+                        clearTimeout(grid.scrollTimeout);
+                        grid.scrollTimeout = setTimeout(() => {
+                            isScrolling = false;
+                        }, 2000); // Resume auto-scroll after 2 seconds of no manual scrolling
+                    });
+                    
+                    // Start auto-scroll
+                    if (maxScroll > 0) {
+                        setInterval(autoScroll, 3000); // Auto-scroll every 3 seconds
+                    }
+                });
+            }
+        }
+
+        // Initialize slideshow on page load and window resize
+        document.addEventListener('DOMContentLoaded', initImageSlideshow);
+        window.addEventListener('resize', initImageSlideshow);
     </script>
 </body>
 </html>
