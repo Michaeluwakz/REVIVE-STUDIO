@@ -73,9 +73,24 @@
         }
         
         @media (max-width: 768px) {
+            header {
+                padding: 0;
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+                backdrop-filter: blur(10px);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                width: 100%;
+            }
+            
             .header-container {
-                padding: 1rem 0;
+                padding: 1rem;
                 justify-content: space-between;
+                width: 100%;
+                background: transparent;
             }
         }
         
@@ -473,10 +488,7 @@
         }
         
         @media (max-width: 768px) {
-            .header-container {
-                padding: 1rem 0;
-                justify-content: space-between;
-            }
+            /* Header styles already defined in first mobile breakpoint above */
             
             .logo-container {
                 flex: 0 0 auto;
