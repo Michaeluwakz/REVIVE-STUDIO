@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Nailed By Nadzz | Nails & Beauty Salon | Leeds UK</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -26,6 +26,32 @@
             color: var(--dark-brown);
             background-color: var(--cream);
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Ensure header covers status bar area on mobile */
+        @media (max-width: 768px) {
+            html, body {
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+            }
+            
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100vw;
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+                min-height: 80px;
+            }
         }
         
         h1, h2, h3, h4 {
@@ -48,8 +74,12 @@
             position: fixed;
             width: 100%;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
+            margin: 0;
+            padding: 0;
         }
         
         .header-container {
@@ -477,11 +507,15 @@
                 background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
                 box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
                 position: fixed;
-                width: 100%;
+                width: 100vw;
                 top: 0;
+                left: 0;
+                right: 0;
                 z-index: 1000;
                 backdrop-filter: blur(10px);
                 min-height: 80px;
+                margin: 0;
+                padding: 0;
             }
             
             .header-container {
@@ -753,11 +787,15 @@
                 background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
                 box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
                 position: fixed;
-                width: 100%;
+                width: 100vw;
                 top: 0;
+                left: 0;
+                right: 0;
                 z-index: 1000;
                 backdrop-filter: blur(10px);
                 min-height: 70px;
+                margin: 0;
+                padding: 0;
             }
             
             .header-container {
@@ -970,11 +1008,15 @@
                 background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
                 box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
                 position: fixed;
-                width: 100%;
+                width: 100vw;
                 top: 0;
+                left: 0;
+                right: 0;
                 z-index: 1000;
                 backdrop-filter: blur(10px);
                 min-height: 65px;
+                margin: 0;
+                padding: 0;
             }
             
             .hero h1 {
