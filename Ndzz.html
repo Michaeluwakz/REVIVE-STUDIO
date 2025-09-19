@@ -1329,6 +1329,7 @@
         document.querySelectorAll('#menu a').forEach(link => {
             link.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
+                console.log('Menu link clicked:', href); // Debug log
                 
                 // Close mobile menu
                 menu.classList.remove('show');
@@ -1338,37 +1339,22 @@
                     e.preventDefault();
                     const targetId = href;
                     const targetElement = document.querySelector(targetId);
+                    console.log('Target element found:', targetElement); // Debug log
                     
                     if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
+                        // Add a small delay to ensure menu closes before scrolling
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }, 100);
+                    } else {
+                        console.log('Target element not found for:', targetId);
                     }
                 }
                 // If it's a page link, let it navigate normally
                 // (no preventDefault needed)
-            });
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    menu.classList.remove('show');
-                }
             });
         });
         
