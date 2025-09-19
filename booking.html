@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Book Your Appointment | Nailed By Nadzz | Nails & Beauty Salon | Leeds UK</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -26,6 +26,56 @@
             color: var(--dark-brown);
             background-color: var(--cream);
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Ensure header covers status bar area on mobile */
+        @media (max-width: 768px) {
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                overflow-x: hidden;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                overflow-x: hidden;
+                position: relative;
+            }
+            
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100vw;
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+                min-height: 80px;
+                border: none;
+                outline: none;
+                transform: translateZ(0);
+            }
+            
+            .header-container {
+                margin: 0;
+                padding: 1rem 0;
+                width: 100%;
+            }
         }
         
         h1, h2, h3, h4 {
@@ -48,8 +98,12 @@
             position: fixed;
             width: 100%;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
+            margin: 0;
+            padding: 0;
         }
         
         .header-container {
@@ -58,6 +112,18 @@
             align-items: center;
             padding: 1.5rem 0;
             width: 100%;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            flex: 0 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
         
         @media (max-width: 768px) {
@@ -456,9 +522,34 @@
         }
         
         @media (max-width: 768px) {
+            header {
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
+                position: fixed;
+                width: 100vw;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+                min-height: 80px;
+                margin: 0;
+                padding: 0;
+            }
+            
             .header-container {
                 padding: 1rem 0;
                 justify-content: space-between;
+            }
+            
+            .logo-container {
+                flex: 0 0 auto;
+                order: 1;
+            }
+            
+            .nav-container {
+                order: 2;
+                gap: 1rem;
             }
             
             .logo img {
@@ -542,6 +633,21 @@
                 padding: 0 5px;
             }
             
+            header {
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
+                position: fixed;
+                width: 100vw;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+                min-height: 70px;
+                margin: 0;
+                padding: 0;
+            }
+            
             .header-container {
                 padding: 0.8rem 0;
             }
@@ -586,9 +692,56 @@
             .booking-info {
                 padding: 1.5rem;
             }
+            
+            /* Mobile Footer - Smaller icons and text */
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .footer-section h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .footer-section p {
+                font-size: 0.85rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .social-links {
+                justify-content: center;
+                gap: 0.8rem;
+            }
+            
+            .social-links a {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .copyright p {
+                font-size: 0.8rem;
+            }
         }
         
         @media (max-width: 320px) {
+            header {
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
+                position: fixed;
+                width: 100vw;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+                min-height: 65px;
+                margin: 0;
+                padding: 0;
+            }
+            
             .hero-content h1 {
                 font-size: 1.8rem;
             }
@@ -607,6 +760,31 @@
                 padding: 8px;
                 font-size: 0.85rem;
             }
+            
+            /* Extra Small Mobile Footer */
+            .footer-section h3 {
+                font-size: 1rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .footer-section p {
+                font-size: 0.75rem;
+                margin-bottom: 0.2rem;
+            }
+            
+            .social-links {
+                gap: 0.6rem;
+            }
+            
+            .social-links a {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+            
+            .copyright p {
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
@@ -614,23 +792,27 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="Ndzz.html" class="logo">
-                <img src="public/image/image.png" alt="Nailed By Nadzz Logo">
-                Nailed By Nadzz
-            </a>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav>
-                <ul id="menu">
-                    <li><a href="Ndzz.html">Home</a></li>
-                    <li><a href="Ndzz.html#services">Services</a></li>
-                    <li><a href="booking.html">Book Now</a></li>
-                    <li><a href="Ndzz.html#about">About Us</a></li>
-                    <li><a href="policies.html">Policies</a></li>
-                    <li><a href="Ndzz.html#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <div class="logo-container">
+                <a href="Ndzz.html" class="logo">
+                    <img src="public/image/image.png" alt="Nailed By Nadzz Logo">
+                    Nailed By Nadzz
+                </a>
+            </div>
+            <div class="nav-container">
+                <nav>
+                    <ul id="menu">
+                        <li><a href="Ndzz.html">Home</a></li>
+                        <li><a href="Ndzz.html#services">Services</a></li>
+                        <li><a href="booking.html">Book Now</a></li>
+                        <li><a href="Ndzz.html#about">About Us</a></li>
+                        <li><a href="policies.html">Policies</a></li>
+                        <li><a href="Ndzz.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 
