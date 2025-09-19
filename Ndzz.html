@@ -28,6 +28,13 @@
             line-height: 1.6;
         }
         
+        /* Add padding for fixed header on mobile */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+        }
+        
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
             font-weight: 600;
@@ -750,8 +757,16 @@
                 padding: 0 5px;
             }
             
+            header {
+                padding: 0;
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+            }
+            
             .header-container {
-                padding: 0.8rem 0;
+                padding: 0.8rem 1rem;
+                justify-content: space-between;
+                width: 100%;
+                background: transparent;
             }
             
             .logo-container {
