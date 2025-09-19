@@ -60,47 +60,10 @@
             width: 100%;
         }
         
-        .logo-container {
-            display: flex;
-            align-items: center;
-            flex: 0 0 auto;
-        }
-        
-        .nav-container {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        
         @media (max-width: 768px) {
-            header {
-                padding: 0;
-                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-                backdrop-filter: blur(10px);
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 1000;
-                width: 100%;
-            }
-            
             .header-container {
-                padding: 1rem;
+                padding: 1rem 0;
                 justify-content: space-between;
-                width: 100%;
-                background: transparent;
-            }
-            
-            .logo-container {
-                flex: 0 0 auto;
-                order: 1;
-            }
-            
-            .nav-container {
-                order: 2;
-                gap: 1rem;
             }
         }
         
@@ -693,6 +656,54 @@
         }
         
         @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem 0;
+                justify-content: space-between;
+            }
+            
+            .logo img {
+                height: 35px;
+                margin-right: 8px;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 8px 25px rgba(196, 109, 38, 0.4);
+                backdrop-filter: blur(10px);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 0.5rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                order: 2;
+                flex-shrink: 0;
+            }
+            
+            .logo {
+                order: 1;
+                flex-shrink: 0;
+            }
+            
             .hero-section {
                 height: 40vh;
             }
@@ -1060,26 +1071,22 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <div class="logo-container">
-                <a href="Ndzz.html" class="logo">
-                    <img src="public/image/image.png" alt="Nailed By Nadzz Logo">
-                    Nailed By Nadzz
-                </a>
-            </div>
-            <div class="nav-container">
-                <nav>
-                    <ul id="menu">
-                        <li><a href="Ndzz.html">Home</a></li>
-                        <li><a href="Ndzz.html#services">Services</a></li>
-                        <li><a href="Ndzz.html#booking">Book Now</a></li>
-                        <li><a href="Ndzz.html#about">About Us</a></li>
-                        <li><a href="Ndzz.html#contact">Contact</a></li>
-                    </ul>
-                </nav>
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+            <a href="Ndzz.html" class="logo">
+                <img src="public/image/image.png" alt="Nailed By Nadzz Logo">
+                Nailed By Nadzz
+            </a>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="menu">
+                    <li><a href="Ndzz.html">Home</a></li>
+                    <li><a href="Ndzz.html#services">Services</a></li>
+                    <li><a href="Ndzz.html#booking">Book Now</a></li>
+                    <li><a href="Ndzz.html#about">About Us</a></li>
+                    <li><a href="Ndzz.html#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
