@@ -60,12 +60,6 @@
             width: 100%;
         }
         
-        @media (max-width: 768px) {
-            .header-container {
-                padding: 1rem 0;
-                justify-content: space-between;
-            }
-        }
         
         .logo {
             font-family: 'Playfair Display', serif;
@@ -656,9 +650,34 @@
         }
         
         @media (max-width: 768px) {
+            header {
+                padding: 0;
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+                backdrop-filter: blur(10px);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                width: 100%;
+            }
+            
             .header-container {
-                padding: 1rem 0;
+                padding: 1rem;
                 justify-content: space-between;
+                width: 100%;
+                background: transparent;
+            }
+            
+            .logo-container {
+                flex: 0 0 auto;
+                order: 1;
+            }
+            
+            .nav-container {
+                order: 2;
+                gap: 1rem;
             }
             
             .logo img {
@@ -821,6 +840,38 @@
                 font-size: 1.4rem;
                 margin-bottom: 1rem;
             }
+            
+            /* Mobile Footer - Smaller icons and text */
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .footer-section h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .footer-section p {
+                font-size: 0.85rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .social-links {
+                justify-content: center;
+                gap: 0.8rem;
+            }
+            
+            .social-links a {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .copyright p {
+                font-size: 0.8rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -949,6 +1000,31 @@
                 font-size: 1.2rem;
                 margin-bottom: 0.8rem;
             }
+            
+            /* Extra Small Mobile Footer */
+            .footer-section h3 {
+                font-size: 1rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .footer-section p {
+                font-size: 0.75rem;
+                margin-bottom: 0.2rem;
+            }
+            
+            .social-links {
+                gap: 0.6rem;
+            }
+            
+            .social-links a {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+            
+            .copyright p {
+                font-size: 0.7rem;
+            }
         }
         
         @media (max-width: 320px) {
@@ -1064,6 +1140,20 @@
                 font-size: 1.1rem;
                 margin-bottom: 0.6rem;
             }
+            
+            .footer-section h3 {
+                font-size: 0.9rem;
+            }
+            
+            .footer-section p {
+                font-size: 0.7rem;
+            }
+            
+            .social-links a {
+                width: 28px;
+                height: 28px;
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -1071,22 +1161,26 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="Ndzz.html" class="logo">
-                <img src="public/image/image.png" alt="Nailed By Nadzz Logo">
-                Nailed By Nadzz
-            </a>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav>
-                <ul id="menu">
-                    <li><a href="Ndzz.html">Home</a></li>
-                    <li><a href="Ndzz.html#services">Services</a></li>
-                    <li><a href="Ndzz.html#booking">Book Now</a></li>
-                    <li><a href="Ndzz.html#about">About Us</a></li>
-                    <li><a href="Ndzz.html#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <div class="logo-container">
+                <a href="Ndzz.html" class="logo">
+                    <img src="public/image/image.png" alt="Nailed By Nadzz Logo">
+                    Nailed By Nadzz
+                </a>
+            </div>
+            <div class="nav-container">
+                <nav>
+                    <ul id="menu">
+                        <li><a href="Ndzz.html">Home</a></li>
+                        <li><a href="Ndzz.html#services">Services</a></li>
+                        <li><a href="Ndzz.html#booking">Book Now</a></li>
+                        <li><a href="Ndzz.html#about">About Us</a></li>
+                        <li><a href="Ndzz.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 
