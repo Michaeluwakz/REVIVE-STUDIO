@@ -32,10 +32,25 @@
         
         /* Ensure header covers status bar area on mobile */
         @media (max-width: 768px) {
-            html, body {
+            * {
                 margin: 0;
                 padding: 0;
+                box-sizing: border-box;
+            }
+            
+            html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
                 overflow-x: hidden;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                overflow-x: hidden;
+                position: relative;
             }
             
             header {
@@ -51,6 +66,15 @@
                 z-index: 1000;
                 backdrop-filter: blur(10px);
                 min-height: 80px;
+                border: none;
+                outline: none;
+                transform: translateZ(0);
+            }
+            
+            .header-container {
+                margin: 0;
+                padding: 1rem 0;
+                width: 100%;
             }
         }
         
@@ -578,7 +602,8 @@
             
             .hero {
                 height: 80vh;
-                margin-top: 70px;
+                margin-top: 0;
+                padding-top: 80px;
             }
             
             .hero h1 {
@@ -817,7 +842,8 @@
             
             .hero {
                 height: 70vh;
-                margin-top: 60px;
+                margin-top: 0;
+                padding-top: 70px;
             }
             
             .hero h1 {
