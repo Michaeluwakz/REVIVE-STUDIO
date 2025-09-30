@@ -67,15 +67,24 @@
         
         
         .logo {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.8rem;
             color: white;
             text-decoration: none;
             display: flex;
             align-items: center;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            font-weight: 600;
+            font-weight: 700;
             flex-shrink: 0;
+            letter-spacing: 1px;
+            position: relative;
+            background: linear-gradient(45deg, #ffffff 0%, #f0f0f0 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+            transition: all 0.3s ease;
         }
         
         .logo img {
@@ -84,6 +93,29 @@
             margin-right: 15px;
             filter: brightness(1.1) contrast(1.2) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
             transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.7));
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--burnt-orange), #D47A2A, var(--light-brown));
+            border-radius: 8px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .logo:hover::before {
+            opacity: 0.3;
         }
         
         .logo img:hover {
