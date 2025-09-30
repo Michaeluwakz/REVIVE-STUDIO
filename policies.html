@@ -1374,8 +1374,8 @@
         <div class="container header-container">
             <div class="logo-container">
                 <a href="index.html" class="logo">
-                    <img src="public/image/image.png" alt="Nailed By Nadzz Logo">
-                    Nailed By Nadzz
+                    <img src="public/image/image.png" alt="REVIVE STUDIO Logo">
+                    REVIVE STUDIO
                 </a>
             </div>
             <div class="nav-container">
@@ -1619,7 +1619,7 @@
         <div class="container">
             <div class="footer-container">
                 <div class="footer-section">
-                    <h3>Nailed By Nadzz</h3>
+                    <h3>REVIVE STUDIO</h3>
                     <p>Mid-century modern beauty salon in Leeds offering manicure, hairstyling, and makeup services.</p>
                     <div class="social-links">
                         <a href="https://www.instagram.com/nailedbynadzz/" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -1628,7 +1628,7 @@
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <p><i class="fas fa-map-marker-alt"></i> 2a Church Road, Leeds, Armley LS12 1TZ</p>
-                    <p><i class="fas fa-envelope"></i> info@nailedbynadzz.co.uk</p>
+                    <p><i class="fas fa-envelope"></i> nailedbynadzzbookings@gmail.com</p>
                 </div>
                 <div class="footer-section">
                     <h3>Opening Hours</h3>
@@ -1637,7 +1637,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Nailed By Nadzz. All rights reserved.</p>
+                <p>&copy; 2025 REVIVE STUDIO. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1662,6 +1662,7 @@
         document.querySelectorAll('#menu a').forEach(link => {
             link.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
+                console.log('Menu link clicked:', href); // Debug log
                 
                 // Close mobile menu
                 menu.classList.remove('show');
@@ -1671,12 +1672,18 @@
                     e.preventDefault();
                     const targetId = href;
                     const targetElement = document.querySelector(targetId);
+                    console.log('Target element found:', targetElement); // Debug log
                     
                     if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
+                        // Add a small delay to ensure menu closes before scrolling
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }, 100);
+                    } else {
+                        console.log('Target element not found for:', targetId);
                     }
                 }
                 // If it's a page link, let it navigate normally
