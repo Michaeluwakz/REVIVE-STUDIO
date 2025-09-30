@@ -327,6 +327,31 @@
             display: none !important;
         }
         
+        /* Additional iOS-specific hiding */
+        .hero-video::-webkit-media-controls-overlay-play-button {
+            display: none !important;
+        }
+        
+        .hero-video::-webkit-media-controls-enclosure {
+            display: none !important;
+        }
+        
+        /* Force hide any overlay elements */
+        .hero-video::before,
+        .hero-video::after {
+            display: none !important;
+        }
+        
+        /* Ensure video is treated as background */
+        .hero-video {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -335,6 +360,19 @@
             height: 100%;
             background: linear-gradient(rgba(60, 42, 33, 0.7), rgba(60, 42, 33, 0.7));
             z-index: -1;
+        }
+        
+        /* Additional overlay to hide any remaining play buttons */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 1;
+            pointer-events: none;
         }
         
         .hero-content {
@@ -1889,24 +1927,56 @@
         // Force video autoplay on mobile and hide play button
         const heroVideo = document.querySelector('.hero-video');
         if (heroVideo) {
-            // Try to play the video immediately
-            heroVideo.play().catch(error => {
-                console.log('Autoplay prevented:', error);
-                // If autoplay fails, try again on user interaction
-                document.addEventListener('touchstart', function() {
-                    heroVideo.play().catch(e => console.log('Play failed:', e));
-                }, { once: true });
-            });
-            
-            // Hide any play button that might appear
-            heroVideo.addEventListener('loadedmetadata', function() {
-                heroVideo.style.pointerEvents = 'none';
-                heroVideo.controls = false;
-            });
+            // Disable all video controls immediately
+            heroVideo.controls = false;
+            heroVideo.controlsList = 'nodownload nofullscreen noremoteplayback';
+            heroVideo.disablePictureInPicture = true;
+            heroVideo.style.pointerEvents = 'none';
             
             // Ensure video is muted for autoplay compliance
             heroVideo.muted = true;
             heroVideo.volume = 0;
+            
+            // Try to play the video immediately
+            const playVideo = () => {
+                heroVideo.play().then(() => {
+                    console.log('Video playing successfully');
+                }).catch(error => {
+                    console.log('Autoplay prevented:', error);
+                });
+            };
+            
+            // Try to play immediately
+            playVideo();
+            
+            // Try again when video is loaded
+            heroVideo.addEventListener('loadeddata', playVideo);
+            heroVideo.addEventListener('canplay', playVideo);
+            
+            // Try on any user interaction
+            const tryPlayOnInteraction = () => {
+                heroVideo.play().then(() => {
+                    console.log('Video playing after interaction');
+                    // Remove event listeners after successful play
+                    document.removeEventListener('touchstart', tryPlayOnInteraction);
+                    document.removeEventListener('click', tryPlayOnInteraction);
+                }).catch(e => console.log('Play failed after interaction:', e));
+            };
+            
+            document.addEventListener('touchstart', tryPlayOnInteraction, { once: false });
+            document.addEventListener('click', tryPlayOnInteraction, { once: false });
+            
+            // Force hide any remaining controls
+            const hideControls = () => {
+                heroVideo.style.outline = 'none';
+                heroVideo.style.border = 'none';
+                // Remove any webkit controls
+                heroVideo.setAttribute('webkit-playsinline', 'true');
+                heroVideo.setAttribute('playsinline', 'true');
+            };
+            
+            hideControls();
+            heroVideo.addEventListener('loadedmetadata', hideControls);
         }
     </script>
 </body>
