@@ -305,6 +305,26 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
+            pointer-events: none;
+            -webkit-playsinline: true;
+            playsinline: true;
+        }
+        
+        /* Hide video controls completely */
+        .hero-video::-webkit-media-controls {
+            display: none !important;
+        }
+        
+        .hero-video::-webkit-media-controls-panel {
+            display: none !important;
+        }
+        
+        .hero-video::-webkit-media-controls-play-button {
+            display: none !important;
+        }
+        
+        .hero-video::-webkit-media-controls-start-playback-button {
+            display: none !important;
         }
         
         .hero-overlay {
@@ -1864,6 +1884,29 @@
         if (dateInput) {
             const today = new Date().toISOString().split('T')[0];
             dateInput.setAttribute('min', today);
+        }
+        
+        // Force video autoplay on mobile and hide play button
+        const heroVideo = document.querySelector('.hero-video');
+        if (heroVideo) {
+            // Try to play the video immediately
+            heroVideo.play().catch(error => {
+                console.log('Autoplay prevented:', error);
+                // If autoplay fails, try again on user interaction
+                document.addEventListener('touchstart', function() {
+                    heroVideo.play().catch(e => console.log('Play failed:', e));
+                }, { once: true });
+            });
+            
+            // Hide any play button that might appear
+            heroVideo.addEventListener('loadedmetadata', function() {
+                heroVideo.style.pointerEvents = 'none';
+                heroVideo.controls = false;
+            });
+            
+            // Ensure video is muted for autoplay compliance
+            heroVideo.muted = true;
+            heroVideo.volume = 0;
         }
     </script>
 </body>
