@@ -21,6 +21,11 @@
             box-sizing: border-box;
         }
         
+        /* Smooth scrolling for all browsers */
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--dark-brown);
@@ -142,31 +147,33 @@
         .hero-section {
             background: linear-gradient(135deg, rgba(44, 24, 16, 0.8), rgba(196, 109, 38, 0.8)), 
                         url('https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
-            height: 60vh;
+            height: 35vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
             position: relative;
+            margin-top: -60px;
+            padding-top: 80px;
         }
         
         .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         
         .hero-content p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             opacity: 0.9;
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
         }
         
         /* Policies Section */
         .policies {
-            padding: 3rem 0;
+            padding: 2rem 0;
             background: linear-gradient(135deg, #f8f6f3 0%, #ffffff 50%, #f5f2ed 100%);
             position: relative;
         }
@@ -194,7 +201,7 @@
 
         .policy-card {
             background: white;
-            padding: 2rem 2.5rem;
+            padding: 1.5rem 2rem;
             border-radius: 16px;
             text-align: left;
             box-shadow: 0 8px 32px rgba(44, 24, 16, 0.08);
@@ -285,7 +292,7 @@
 
         /* Need to Know Section */
         .need-to-know {
-            padding: 6rem 0;
+            padding: 3rem 0;
             background: linear-gradient(135deg, var(--dark-brown) 0%, #3a2418 100%);
             position: relative;
         }
@@ -411,38 +418,91 @@
         .nail-preview {
             width: 50px;
             height: 70px;
-            background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 100%);
-            border-radius: 10px 10px 0 0;
+            background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, #B85D1A 100%);
+            border-radius: 12px 12px 4px 4px;
             position: relative;
-            box-shadow: 0 5px 20px rgba(196, 109, 38, 0.4);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 6px 15px rgba(196, 109, 38, 0.4);
+            margin-bottom: 0.6rem;
+            overflow: hidden;
         }
         
         .nail-preview::before {
             content: '';
             position: absolute;
-            top: 0;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 28px;
+            height: 10px;
+            background: linear-gradient(90deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        .nail-preview::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
-            border-radius: 10px 10px 0 0;
+            height: 20px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+            border-radius: 0 0 5px 5px;
         }
-
+        
+        .nail-preview .nail-tip {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-top: 8px solid rgba(255, 255, 255, 0.8);
+        }
+        
         .nail-preview.short {
-            height: 45px;
+            height: 60px;
+            background: linear-gradient(135deg, #E8A87C 0%, #D47A2A 100%);
         }
-
+        
         .nail-preview.medium {
-            height: 55px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 100%);
         }
-
+        
         .nail-preview.long {
-            height: 70px;
+            height: 100px;
+            background: linear-gradient(135deg, #D47A2A 0%, #B85D1A 100%);
         }
-
+        
         .nail-preview.xtra-long {
-            height: 90px;
+            height: 120px;
+            background: linear-gradient(135deg, #B85D1A 0%, #9B4A0F 100%);
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { 
+                transform: translateX(-50%) scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: translateX(-50%) scale(1.1);
+                opacity: 0.8;
+            }
+        }
+        
+        .length-option:hover .nail-preview {
+            transform: translateY(-5px) rotate(2deg);
+            box-shadow: 0 12px 30px rgba(196, 109, 38, 0.6);
+        }
+        
+        .length-option.selected .nail-preview {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(196, 109, 38, 0.7);
         }
 
         .length-option span {
@@ -455,7 +515,7 @@
         
         /* Image Placeholder Sections */
         .image-section {
-            padding: 4rem 0;
+            padding: 2rem 0;
             background: white;
             position: relative;
         }
@@ -572,7 +632,7 @@
         footer {
             background-color: var(--dark-brown);
             color: white;
-            padding: 3rem 0;
+            padding: 2rem 0;
         }
         
         .footer-container {
@@ -652,9 +712,9 @@
         @media (max-width: 768px) {
             header {
                 padding: 0;
-                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-                backdrop-filter: blur(10px);
+                background: transparent;
+                box-shadow: none;
+                backdrop-filter: none;
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -724,19 +784,21 @@
             }
             
             .hero-section {
-                height: 40vh;
+                height: 30vh;
+                margin-top: -60px;
+                padding-top: 80px;
             }
             
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .hero-content p {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
 
             .policies {
-                padding: 2rem 0;
+                padding: 1.5rem 0;
             }
 
             .section-title h2 {
@@ -755,13 +817,37 @@
             }
 
             .policies-grid {
-                grid-template-columns: 1fr;
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
                 gap: 1.5rem;
+                padding: 0 1rem;
+                scrollbar-width: thin;
+                scrollbar-color: var(--burnt-orange) transparent;
+            }
+            
+            .policies-grid::-webkit-scrollbar {
+                height: 6px;
+            }
+            
+            .policies-grid::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            
+            .policies-grid::-webkit-scrollbar-thumb {
+                background: var(--burnt-orange);
+                border-radius: 3px;
+            }
+            
+            .policies-grid::-webkit-scrollbar-thumb:hover {
+                background: var(--dark-brown);
             }
 
             .policy-card {
-                padding: 1.5rem;
-                min-height: 200px;
+                flex: 0 0 280px;
+                padding: 1.2rem;
+                min-height: 180px;
+                scroll-snap-align: start;
             }
 
             .policy-header {
@@ -789,32 +875,107 @@
             }
 
             .length-options {
-                grid-template-columns: 1fr;
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
                 gap: 1rem;
+                padding: 1rem 0.5rem;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                margin: 0 -0.5rem;
+            }
+            
+            .length-options::-webkit-scrollbar {
+                display: none;
             }
 
             .length-option {
-                flex-direction: row;
-                justify-content: space-between;
+                flex: 0 0 100px;
+                flex-direction: column;
+                justify-content: center;
                 align-items: center;
-                padding: 0.8rem;
+                padding: 1rem 0.8rem;
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(238, 219, 185, 0.8) 100%);
+                border-radius: 15px;
+                box-shadow: 0 6px 20px rgba(196, 109, 38, 0.15);
+                border: 2px solid transparent;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                scroll-snap-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .length-option::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+                transition: left 0.6s ease;
+            }
+            
+            .length-option:hover::before {
+                left: 100%;
+            }
+            
+            .length-option:active {
+                transform: scale(0.95);
+            }
+            
+            .length-option.selected {
+                border-color: var(--burnt-orange);
+                box-shadow: 0 12px 35px rgba(196, 109, 38, 0.3);
+                transform: scale(1.05);
             }
 
             .length-option h4 {
-                font-size: 1rem;
+                font-size: 0.8rem;
+                margin: 0.4rem 0 0.2rem 0;
+                font-weight: 700;
+                color: var(--dark-brown);
             }
 
             .length-option p {
-                font-size: 0.85rem;
+                font-size: 0.7rem;
+                text-align: center;
+                line-height: 1.2;
+                color: #666;
+                margin: 0;
             }
 
             .image-grid {
-                grid-template-columns: 1fr;
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
                 gap: 1rem;
+                padding: 0 1rem;
+                scrollbar-width: thin;
+                scrollbar-color: var(--burnt-orange) transparent;
+            }
+            
+            .image-grid::-webkit-scrollbar {
+                height: 6px;
+            }
+            
+            .image-grid::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            
+            .image-grid::-webkit-scrollbar-thumb {
+                background: var(--burnt-orange);
+                border-radius: 3px;
+            }
+            
+            .image-grid::-webkit-scrollbar-thumb:hover {
+                background: var(--dark-brown);
             }
 
             .image-card {
+                flex: 0 0 280px;
                 height: 200px;
+                scroll-snap-align: start;
             }
             
             .checklist-item {
@@ -841,36 +1002,68 @@
                 margin-bottom: 1rem;
             }
             
-            /* Mobile Footer - Smaller icons and text */
+            /* Mobile Footer - Compact Design */
+            footer {
+                background: linear-gradient(135deg, var(--dark-brown) 0%, #2c1810 50%, #1a0f0a 100%);
+                padding: 2rem 0 1.5rem 0;
+                border-top: 3px solid var(--burnt-orange);
+            }
+            
             .footer-container {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1rem;
                 text-align: center;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .footer-section {
+                padding: 0.8rem 0;
+                border-bottom: 1px solid rgba(196, 109, 38, 0.2);
+            }
+            
+            .footer-section:last-child {
+                border-bottom: none;
             }
             
             .footer-section h3 {
-                font-size: 1.2rem;
-                margin-bottom: 1rem;
+                font-size: 1.19375rem;
+                margin-bottom: 0.8rem;
+                color: var(--burnt-orange);
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
             }
             
             .footer-section p {
-                font-size: 0.85rem;
-                margin-bottom: 0.3rem;
+                font-size: 0.88125rem;
+                margin-bottom: 0.4rem;
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.4;
             }
             
             .social-links {
                 justify-content: center;
                 gap: 0.8rem;
+                margin-top: 0.8rem;
             }
             
             .social-links a {
-                width: 35px;
-                height: 35px;
-                font-size: 0.9rem;
+                width: 32px;
+                height: 32px;
+                font-size: 0.99375rem;
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 100%);
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                transition: all 0.3s ease;
+            }
+            
+            .social-links a:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(196, 109, 38, 0.4);
             }
             
             .copyright p {
-                font-size: 0.8rem;
+                font-size: 0.88125rem;
             }
         }
         
@@ -895,6 +1088,8 @@
             
             .hero-section {
                 height: 35vh;
+                margin-top: -60px;
+                padding-top: 80px;
             }
             
             .hero-content h1 {
@@ -928,8 +1123,10 @@
             }
 
             .policy-card {
+                flex: 0 0 260px;
                 padding: 1.2rem;
                 min-height: 180px;
+                scroll-snap-align: start;
             }
 
             .policy-header {
@@ -955,18 +1152,21 @@
 
             .length-options {
                 gap: 0.8rem;
+                padding: 1rem 0.5rem;
+                margin: 0 -0.5rem;
             }
 
             .length-option {
-                padding: 0.6rem;
+                flex: 0 0 90px;
+                padding: 0.8rem 0.6rem;
             }
 
             .length-option h4 {
-                font-size: 0.9rem;
+                font-size: 0.75rem;
             }
 
             .length-option p {
-                font-size: 0.8rem;
+                font-size: 0.65rem;
             }
 
             .image-grid {
@@ -974,7 +1174,9 @@
             }
 
             .image-card {
+                flex: 0 0 260px;
                 height: 160px;
+                scroll-snap-align: start;
             }
 
             .checklist-item {
@@ -1035,6 +1237,8 @@
 
             .hero-section {
                 height: 30vh;
+                margin-top: -60px;
+                padding-top: 80px;
             }
 
             .hero-content h1 {
@@ -1068,8 +1272,10 @@
             }
 
             .policy-card {
+                flex: 0 0 240px;
                 padding: 1rem;
                 min-height: 160px;
+                scroll-snap-align: start;
             }
 
             .policy-header {
@@ -1095,18 +1301,21 @@
 
             .length-options {
                 gap: 0.6rem;
+                padding: 1rem 0.5rem;
+                margin: 0 -0.5rem;
             }
 
             .length-option {
-                padding: 0.5rem;
+                flex: 0 0 85px;
+                padding: 0.7rem 0.5rem;
             }
 
             .length-option h4 {
-                font-size: 0.8rem;
+                font-size: 0.7rem;
             }
 
             .length-option p {
-                font-size: 0.75rem;
+                font-size: 0.6rem;
             }
 
             .image-grid {
@@ -1114,7 +1323,9 @@
             }
 
             .image-card {
+                flex: 0 0 240px;
                 height: 140px;
+                scroll-snap-align: start;
             }
 
             .checklist-item {
@@ -1172,7 +1383,7 @@
                     <ul id="menu">
                         <li><a href="Ndzz.html">Home</a></li>
                         <li><a href="Ndzz.html#services">Services</a></li>
-                        <li><a href="Ndzz.html#booking">Book Now</a></li>
+                        <li><a href="booking.html">Book Now</a></li>
                         <li><a href="Ndzz.html#about">About Us</a></li>
                         <li><a href="Ndzz.html#contact">Contact</a></li>
                     </ul>
@@ -1335,21 +1546,33 @@
                     <div class="nail-lengths">
                         <h3>Nail Lengths</h3>
                         <div class="length-options">
-                            <div class="length-option">
-                                <div class="nail-preview short"></div>
-                                <span>SHORT</span>
+                            <div class="length-option" data-length="short">
+                                <div class="nail-preview short">
+                                    <div class="nail-tip"></div>
+                                </div>
+                                <h4>SHORT</h4>
+                                <p>Perfect for daily life & work</p>
                             </div>
-                            <div class="length-option">
-                                <div class="nail-preview medium"></div>
-                                <span>MEDIUM</span>
+                            <div class="length-option" data-length="medium">
+                                <div class="nail-preview medium">
+                                    <div class="nail-tip"></div>
+                                </div>
+                                <h4>MEDIUM</h4>
+                                <p>Elegant & practical</p>
                             </div>
-                            <div class="length-option">
-                                <div class="nail-preview long"></div>
-                                <span>LONG</span>
+                            <div class="length-option" data-length="long">
+                                <div class="nail-preview long">
+                                    <div class="nail-tip"></div>
+                                </div>
+                                <h4>LONG</h4>
+                                <p>Bold & dramatic</p>
                             </div>
-                            <div class="length-option">
-                                <div class="nail-preview xtra-long"></div>
-                                <span>XTRA LONG</span>
+                            <div class="length-option" data-length="xtra-long">
+                                <div class="nail-preview xtra-long">
+                                    <div class="nail-tip"></div>
+                                </div>
+                                <h4>XTRA LONG</h4>
+                                <p>Ultimate statement</p>
                             </div>
                         </div>
                     </div>
@@ -1399,16 +1622,12 @@
                     <h3>Nailed By Nadzz</h3>
                     <p>Mid-century modern beauty salon in Leeds offering manicure, hairstyling, and makeup services.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/nailedbynadzz/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <p><i class="fas fa-map-marker-alt"></i> 2a Church Road, Leeds, Armley LS12 1TZ</p>
-                    <p><i class="fas fa-phone"></i> +44 113 123 4567</p>
                     <p><i class="fas fa-envelope"></i> info@nailedbynadzz.co.uk</p>
                 </div>
                 <div class="footer-section">
@@ -1485,6 +1704,200 @@
                 }
             });
         });
+        
+        // Smooth scrolling for mobile navigation
+        function initSmoothScrolling() {
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        // Calculate offset for mobile header
+                        const headerHeight = window.innerWidth <= 768 ? 80 : 0;
+                        const targetPosition = targetSection.offsetTop - headerHeight;
+                        
+                        // Smooth scroll to target
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        const menu = document.querySelector('#menu');
+                        const menuBtn = document.querySelector('.mobile-menu-btn');
+                        if (menu && menu.classList.contains('show')) {
+                            menu.classList.remove('show');
+                        }
+                    }
+                });
+            });
+        }
+        
+        // Initialize smooth scrolling
+        initSmoothScrolling();
+
+        // Auto slideshow for policies on mobile
+        function initPoliciesSlideshow() {
+            const policiesGrid = document.querySelector('.policies-grid');
+            if (!policiesGrid || window.innerWidth > 768) return;
+
+            let currentIndex = 0;
+            const policyCards = policiesGrid.querySelectorAll('.policy-card');
+            const totalCards = policyCards.length;
+            let slideInterval;
+
+            function scrollToNext() {
+                currentIndex = (currentIndex + 1) % totalCards;
+                const cardWidth = policyCards[0].offsetWidth + 24; // 24px gap
+                policiesGrid.scrollTo({
+                    left: currentIndex * cardWidth,
+                    behavior: 'smooth'
+                });
+            }
+
+            function startSlideshow() {
+                slideInterval = setInterval(scrollToNext, 3000);
+            }
+
+            function stopSlideshow() {
+                clearInterval(slideInterval);
+            }
+
+            // Start slideshow
+            startSlideshow();
+
+            // Pause on hover/touch
+            policiesGrid.addEventListener('mouseenter', stopSlideshow);
+            policiesGrid.addEventListener('mouseleave', startSlideshow);
+            policiesGrid.addEventListener('touchstart', stopSlideshow);
+            policiesGrid.addEventListener('touchend', () => {
+                setTimeout(startSlideshow, 2000);
+            });
+        }
+
+        // Initialize policies slideshow
+        initPoliciesSlideshow();
+
+        // Auto slideshow for image cards on mobile
+        function initImageCardsSlideshow() {
+            const imageGrids = document.querySelectorAll('.image-grid');
+            if (imageGrids.length === 0 || window.innerWidth > 768) return;
+
+            imageGrids.forEach((imageGrid, gridIndex) => {
+                let currentIndex = 0;
+                const imageCards = imageGrid.querySelectorAll('.image-card');
+                const totalCards = imageCards.length;
+                let slideInterval;
+
+                function scrollToNext() {
+                    currentIndex = (currentIndex + 1) % totalCards;
+                    const cardWidth = imageCards[0].offsetWidth + 16; // 16px gap
+                    imageGrid.scrollTo({
+                        left: currentIndex * cardWidth,
+                        behavior: 'smooth'
+                    });
+                }
+
+                function startSlideshow() {
+                    slideInterval = setInterval(scrollToNext, 3000 + (gridIndex * 1000)); // Stagger timing
+                }
+
+                function stopSlideshow() {
+                    clearInterval(slideInterval);
+                }
+
+                // Start slideshow
+                startSlideshow();
+
+                // Pause on hover/touch
+                imageGrid.addEventListener('mouseenter', stopSlideshow);
+                imageGrid.addEventListener('mouseleave', startSlideshow);
+                imageGrid.addEventListener('touchstart', stopSlideshow);
+                imageGrid.addEventListener('touchend', () => {
+                    setTimeout(startSlideshow, 2000);
+                });
+            });
+        }
+
+        // Initialize image cards slideshow
+        initImageCardsSlideshow();
+
+        // Interactive nail length selection
+        function initNailLengthSelection() {
+            const lengthOptions = document.querySelectorAll('.length-option');
+            
+            lengthOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    lengthOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Add haptic feedback for mobile
+                    if (navigator.vibrate) {
+                        navigator.vibrate(50);
+                    }
+                });
+                
+                // Add touch feedback
+                option.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+                
+                option.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        }
+
+        // Auto-scroll nail lengths on mobile
+        function initNailLengthScroll() {
+            const lengthOptions = document.querySelector('.length-options');
+            if (!lengthOptions || window.innerWidth > 768) return;
+
+            let currentIndex = 0;
+            const options = lengthOptions.querySelectorAll('.length-option');
+            const totalOptions = options.length;
+            let scrollInterval;
+
+            function scrollToNext() {
+                currentIndex = (currentIndex + 1) % totalOptions;
+                const optionWidth = options[0].offsetWidth + 24; // 24px gap
+                lengthOptions.scrollTo({
+                    left: currentIndex * optionWidth,
+                    behavior: 'smooth'
+                });
+            }
+
+            function startAutoScroll() {
+                scrollInterval = setInterval(scrollToNext, 4000);
+            }
+
+            function stopAutoScroll() {
+                clearInterval(scrollInterval);
+            }
+
+            // Start auto scroll
+            startAutoScroll();
+
+            // Pause on interaction
+            lengthOptions.addEventListener('mouseenter', stopAutoScroll);
+            lengthOptions.addEventListener('mouseleave', startAutoScroll);
+            lengthOptions.addEventListener('touchstart', stopAutoScroll);
+            lengthOptions.addEventListener('touchend', () => {
+                setTimeout(startAutoScroll, 3000);
+            });
+        }
+
+        // Initialize nail length features
+        initNailLengthSelection();
+        initNailLengthScroll();
     </script>
 </body>
 </html>

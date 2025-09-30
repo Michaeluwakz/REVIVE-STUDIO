@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nailed By Nadzz | Nails & Beauty Salon | Leeds UK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>REVIVE STUDIO | Nails & Beauty Salon | Leeds UK</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -26,6 +26,104 @@
             color: var(--dark-brown);
             background-color: var(--cream);
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Ensure header covers status bar area on mobile */
+        @media (max-width: 768px) {
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                overflow-x: hidden;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                overflow-x: hidden;
+                position: relative;
+            }
+            
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100vw;
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+                min-height: 40px;
+                border: none;
+                outline: none;
+                transform: translateZ(0);
+            }
+            
+            .header-container {
+                margin: 0;
+                padding: 1.5rem 1rem 1rem 1rem;
+                width: 100%;
+            }
+        }
+        
+        /* Hide top navigation on mobile but keep header background */
+        @media (max-width: 767px) {
+          html, body {
+            background: transparent !important;
+            margin: 0;
+            padding: 0;
+          }
+          
+          * {
+            background-color: transparent !important;
+          }
+          
+          header {
+            background: transparent !important;
+          }
+          
+          .navbar, .top-bar {
+            display: none;
+          }
+          
+          header {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            height: calc(60px + env(safe-area-inset-top, 44px));
+            background: transparent;
+            z-index: 1000;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            min-height: 100px;
+          }
+          
+          .header-container {
+            display: none;
+          }
+          
+          .hero {
+            margin-top: 100px;
+            padding-top: 0;
+            position: relative;
+            z-index: 1;
+          }
         }
         
         h1, h2, h3, h4 {
@@ -48,8 +146,12 @@
             position: fixed;
             width: 100%;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
+            margin: 0;
+            padding: 0;
         }
         
         .header-container {
@@ -60,6 +162,18 @@
             width: 100%;
         }
         
+        .logo-container {
+            display: flex;
+            align-items: center;
+            flex: 0 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
         @media (max-width: 768px) {
             .header-container {
                 padding: 1rem 0;
@@ -68,15 +182,47 @@
         }
         
         .logo {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.8rem;
             color: white;
             text-decoration: none;
             display: flex;
             align-items: center;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            font-weight: 600;
+            font-weight: 700;
             flex-shrink: 0;
+            letter-spacing: 1px;
+            position: relative;
+            background: linear-gradient(45deg, #ffffff 0%, #f0f0f0 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.7));
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--burnt-orange), #D47A2A, var(--light-brown));
+            border-radius: 8px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .logo:hover::before {
+            opacity: 0.3;
         }
         
         .logo img {
@@ -140,13 +286,35 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(60, 42, 33, 0.7), rgba(60, 42, 33, 0.7)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80') no-repeat center center/cover;
             height: 100vh;
             display: flex;
             align-items: center;
             text-align: center;
             color: white;
             margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+            background: transparent;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(60, 42, 33, 0.7), rgba(60, 42, 33, 0.7));
+            z-index: -1;
         }
         
         .hero-content {
@@ -182,9 +350,16 @@
         
         /* Services Section */
         .services {
-            padding: 3rem 0;
+            padding: 2rem 0;
             background: linear-gradient(135deg, var(--cream) 0%, var(--light-brown) 100%);
             position: relative;
+        }
+
+        /* Web view - increase services section padding */
+        @media (min-width: 769px) {
+            .services {
+                padding: 4rem 0;
+            }
         }
         
         .services::before {
@@ -233,6 +408,7 @@
             margin: 0 auto;
             opacity: 0.8;
         }
+        
 
         .services-grid {
             display: grid;
@@ -242,6 +418,177 @@
             z-index: 1;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* Web view styles - No slideshow, centered grid */
+        @media (min-width: 769px) {
+            .services-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 2rem;
+                justify-items: center;
+                align-items: start;
+            }
+            
+            .service-card {
+                background: white;
+                border-radius: 32px;
+                overflow: hidden;
+                box-shadow: 0 20px 50px rgba(44, 24, 16, 0.15);
+                border: 4px solid rgba(196, 109, 38, 0.1);
+                position: relative;
+                aspect-ratio: 1;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                padding: 2.5rem 2rem;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                background: linear-gradient(145deg, #ffffff 0%, #fafafa 100%);
+                width: 100%;
+                max-width: 350px;
+                min-height: 360px;
+            }
+            
+            .service-card:hover {
+                transform: translateY(-12px) scale(1.02);
+                box-shadow: 0 25px 60px rgba(44, 24, 16, 0.2);
+                border-color: rgba(196, 109, 38, 0.2);
+            }
+            
+            .service-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 8px;
+                background: linear-gradient(90deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--light-brown) 100%);
+                border-radius: 4px;
+            }
+            
+            .service-img {
+                width: 100px;
+                height: 100px;
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--light-brown) 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 2.5rem;
+                position: relative;
+                overflow: hidden;
+                margin: 0 auto 2rem auto;
+                border-radius: 50%;
+                box-shadow: 0 12px 30px rgba(196, 109, 38, 0.3);
+                transition: all 0.3s ease;
+            }
+            
+            .service-card:hover .service-img {
+                transform: scale(1.1) rotate(5deg);
+                box-shadow: 0 15px 40px rgba(196, 109, 38, 0.4);
+            }
+            
+            .service-content {
+                text-align: center;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            .service-content h3 {
+                font-size: 1.6rem;
+                color: var(--dark-brown);
+                font-weight: 700;
+                margin-bottom: 1.2rem;
+                letter-spacing: 0.5px;
+                position: relative;
+            }
+            
+            .service-content h3::after {
+                content: '';
+                position: absolute;
+                bottom: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 40px;
+                height: 3px;
+                background: linear-gradient(90deg, var(--burnt-orange), #D47A2A);
+                border-radius: 2px;
+            }
+            
+            .service-content p {
+                font-size: 1.1rem;
+                line-height: 1.7;
+                color: var(--dark-brown);
+                opacity: 0.85;
+                margin-bottom: 1.5rem;
+                font-weight: 400;
+            }
+            
+            .service-content .service-features {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                font-size: 1.1rem;
+                color: var(--dark-brown);
+                opacity: 0.8;
+            }
+            
+            .service-content .service-features li {
+                margin-bottom: 0.8rem;
+                position: relative;
+                padding-left: 1.5rem;
+            }
+            
+            .service-content .service-features li::before {
+                content: '✓';
+                position: absolute;
+                left: 0;
+                color: var(--burnt-orange);
+                font-weight: bold;
+                font-size: 1rem;
+            }
+        }
+
+        /* Mobile view - hide detailed content and show simple subtext */
+        @media (max-width: 768px) {
+            .service-content .service-features {
+                display: none;
+            }
+            
+            .service-content .web-description {
+                display: none;
+            }
+            
+            .service-content .mobile-description {
+                display: block;
+            }
+            
+            .service-content h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .service-content p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+                margin-bottom: 0;
+            }
+        }
+
+        /* Web view - show detailed content and hide simple subtext */
+        @media (min-width: 769px) {
+            .service-content .web-description {
+                display: block;
+            }
+            
+            .service-content .mobile-description {
+                display: none;
+            }
         }
         
         .service-card {
@@ -356,17 +703,26 @@
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
         .testimonial-text {
             font-style: italic;
             margin-bottom: 1rem;
             color: #000000;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
         
         .testimonial-author {
             font-weight: 600;
             color: var(--dark-brown);
+            font-size: 0.95rem;
         }
         
         /* Footer */
@@ -451,9 +807,34 @@
         }
         
         @media (max-width: 768px) {
+            header {
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
+                position: fixed;
+                width: 100vw;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+                min-height: 80px;
+                margin: 0;
+                padding: 0;
+            }
+            
             .header-container {
                 padding: 1rem 0;
                 justify-content: space-between;
+            }
+            
+            .logo-container {
+                flex: 0 0 auto;
+                order: 1;
+            }
+            
+            .nav-container {
+                order: 2;
+                gap: 1rem;
             }
             
             .logo img {
@@ -501,23 +882,144 @@
             
             .hero {
                 height: 80vh;
-                margin-top: 70px;
+                margin-top: 0;
+                padding-top: 40px;
+            }
+            
+            .hero-video {
+                object-fit: cover;
+                object-position: center;
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.59375rem;
             }
             
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1.19375rem;
             }
             
+            /* Mobile Services Section - Smaller boxes */
             .services {
                 padding: 3rem 0;
             }
             
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 2.09375rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .section-title p {
+                font-size: 0.99375rem;
+                max-width: 400px;
+            }
+            
+            .services-grid {
+                display: flex;
+                overflow-x: auto;
+                gap: 1rem;
+                padding: 0 1rem;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+                scrollbar-color: var(--burnt-orange) transparent;
+            }
+            
+            .services-grid::-webkit-scrollbar {
+                height: 4px;
+            }
+            
+            .services-grid::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            
+            .services-grid::-webkit-scrollbar-thumb {
+                background: var(--burnt-orange);
+                border-radius: 2px;
+            }
+            
+            .service-card {
+                flex: 0 0 280px;
+                height: 180px;
+                padding: 1rem 0.8rem;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin: 0;
+                scroll-snap-align: start;
+            }
+            
+            .service-img {
+                width: 60px;
+                height: 60px;
+                font-size: 1.89375rem;
+                flex-shrink: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .service-content {
+                padding: 0;
+                text-align: center;
+            }
+            
+            .service-content h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .service-content p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            /* Mobile Booking Section - Smaller form */
+            .booking {
+                padding: 3rem 0;
+            }
+            
+            .booking-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .booking-image {
+                height: 200px;
+                font-size: 1.59375rem;
+            }
+            
+            .booking-form {
+                padding: 1.5rem;
+            }
+            
+            .booking-form h3 {
+                font-size: 1.39375rem;
+                margin-bottom: 1rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1rem;
+            }
+            
+            .form-group label {
+                font-size: 0.99375rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 10px;
+                font-size: 0.99375rem;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 0.99375rem;
+            }
+
+            /* Mobile About Section - Reduced text */
+            .about {
+                padding: 3rem 0;
             }
             
             .about-container {
@@ -526,18 +1028,134 @@
             }
             
             .about-image {
-                height: 300px;
+                height: 305px;
+                font-size: 1.59375rem;
+            }
+            
+            .about-content h2 {
+                font-size: 1.59375rem;
+                margin-bottom: 1rem;
+            }
+            
+            .about-content p {
+                font-size: 0.99375rem;
+                line-height: 1.5;
+                margin-bottom: 1rem;
+            }
+            
+            .about-content .btn {
+                padding: 8px 20px;
+                font-size: 0.88125rem;
+            }
+            
+            .testimonials {
+                padding: 3rem 0;
             }
             
             .testimonials-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+                display: flex;
+                overflow-x: auto;
+                gap: 1rem;
+                padding: 0 1rem;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+                scrollbar-color: var(--burnt-orange) transparent;
+            }
+            
+            .testimonials-grid::-webkit-scrollbar {
+                height: 4px;
+            }
+            
+            .testimonials-grid::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            
+            .testimonials-grid::-webkit-scrollbar-thumb {
+                background: var(--burnt-orange);
+                border-radius: 2px;
+            }
+            
+            .testimonial-card {
+                flex: 0 0 280px;
+                padding: 1.2rem 1rem;
+                border-radius: 12px;
+                margin-bottom: 0;
+                scroll-snap-align: start;
+            }
+            
+            .testimonial-text {
+                font-size: 1.09375rem;
+                line-height: 1.5;
+                margin-bottom: 1rem;
+            }
+            
+            .testimonial-author {
+                font-size: 0.99375rem;
+            }
+            
+            /* Mobile Footer - Compact Design */
+            footer {
+                background: linear-gradient(135deg, var(--dark-brown) 0%, #2c1810 50%, #1a0f0a 100%);
+                padding: 2rem 0 1.5rem 0;
+                border-top: 3px solid var(--burnt-orange);
             }
             
             .footer-container {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1rem;
                 text-align: center;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .footer-section {
+                padding: 0.8rem 0;
+                border-bottom: 1px solid rgba(196, 109, 38, 0.2);
+            }
+            
+            .footer-section:last-child {
+                border-bottom: none;
+            }
+            
+            .footer-section h3 {
+                font-size: 1.19375rem;
+                margin-bottom: 0.8rem;
+                color: var(--burnt-orange);
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            
+            .footer-section p {
+                font-size: 0.88125rem;
+                margin-bottom: 0.4rem;
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.4;
+            }
+            
+            .social-links {
+                justify-content: center;
+                gap: 0.8rem;
+                margin-top: 0.8rem;
+            }
+            
+            .social-links a {
+                width: 32px;
+                height: 32px;
+                font-size: 0.99375rem;
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 100%);
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                transition: all 0.3s ease;
+            }
+            
+            .social-links a:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(196, 109, 38, 0.4);
+            }
+            
+            .copyright p {
+                font-size: 0.88125rem;
             }
         }
         
@@ -547,8 +1165,27 @@
                 padding: 0 5px;
             }
             
+            header {
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
+                position: fixed;
+                width: 100vw;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+                min-height: 70px;
+                margin: 0;
+                padding: 0;
+            }
+            
             .header-container {
                 padding: 0.8rem 0;
+            }
+            
+            .logo-container {
+                flex: 0 0 auto;
             }
             
             .logo img {
@@ -562,7 +1199,13 @@
             
             .hero {
                 height: 70vh;
-                margin-top: 60px;
+                margin-top: 0;
+                padding-top: 40px;
+            }
+            
+            .hero-video {
+                object-fit: cover;
+                object-position: center;
             }
             
             .hero h1 {
@@ -573,71 +1216,342 @@
                 font-size: 1rem;
             }
             
+            /* Extra Small Mobile - Even more compact */
             .services {
                 padding: 2rem 0;
             }
             
             .section-title h2 {
                 font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+            
+            .section-title p {
+                font-size: 0.8rem;
+                max-width: 350px;
             }
             
             .services-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+                display: flex;
+                overflow-x: auto;
+                gap: 0.8rem;
+                padding: 0 0.8rem;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
             }
             
             .service-card {
-                aspect-ratio: 1;
-                padding: 1.5rem 1rem;
+                flex: 0 0 260px;
+                height: 160px;
+                padding: 0.8rem 0.6rem;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin: 0;
+                scroll-snap-align: start;
             }
             
             .service-img {
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
                 font-size: 1.5rem;
-                margin: 0 auto 1rem auto;
+                margin-bottom: 0.8rem;
+                flex-shrink: 0;
+            }
+            
+            .service-content {
+                padding: 0;
+                text-align: center;
             }
             
             .service-content h3 {
                 font-size: 1.2rem;
+                margin-bottom: 0.6rem;
             }
             
             .service-content p {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+                line-height: 1.3;
+            }
+
+            /* Extra Small Mobile Booking */
+            .booking {
+                padding: 2rem 0;
+            }
+            
+            .booking-image {
+                height: 150px;
+                font-size: 1.2rem;
+            }
+            
+            .booking-form {
+                padding: 1rem;
+            }
+            
+            .booking-form h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .form-group {
+                margin-bottom: 0.8rem;
+            }
+            
+            .form-group label {
+                font-size: 0.8rem;
+                margin-bottom: 0.2rem;
+            }
+            
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+            
+            .btn {
+                padding: 8px 20px;
+                font-size: 0.8rem;
+            }
+
+            /* Extra Small Mobile About */
+            .about {
+                padding: 2rem 0;
             }
             
             .about-content h2 {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .about-content p {
+                font-size: 0.8rem;
+                line-height: 1.4;
+                margin-bottom: 0.8rem;
+            }
+            
+            .about-content .btn {
+                padding: 6px 16px;
+                font-size: 0.75rem;
             }
             
             .about-image {
-                height: 250px;
+                height: 235px;
+                font-size: 1.2rem;
+            }
+            
+            .testimonials {
+                padding: 2.5rem 0;
+            }
+            
+            .testimonials-grid {
+                display: flex;
+                overflow-x: auto;
+                gap: 0.8rem;
+                padding: 0 0.8rem;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+                scrollbar-color: var(--burnt-orange) transparent;
+            }
+            
+            .testimonials-grid::-webkit-scrollbar {
+                height: 3px;
+            }
+            
+            .testimonials-grid::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            
+            .testimonials-grid::-webkit-scrollbar-thumb {
+                background: var(--burnt-orange);
+                border-radius: 2px;
             }
             
             .testimonial-card {
-                padding: 1.5rem;
+                flex: 0 0 260px;
+                padding: 1rem 0.8rem;
+                border-radius: 10px;
+                margin-bottom: 0;
+                scroll-snap-align: start;
+            }
+            
+            .testimonial-text {
+                font-size: 0.95rem;
+                line-height: 1.4;
+                margin-bottom: 0.8rem;
+            }
+            
+            .testimonial-author {
+                font-size: 0.85rem;
+            }
+            
+            /* Extra Small Mobile Footer */
+            footer {
+                padding: 1.5rem 0 1rem 0;
+            }
+            
+            .footer-container {
+                max-width: 350px;
+                gap: 0.8rem;
+            }
+            
+            .footer-section {
+                padding: 0.6rem 0;
             }
             
             .footer-section h3 {
-                font-size: 1.3rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.6rem;
+            }
+            
+            .footer-section p {
+                font-size: 0.7rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .social-links {
+                gap: 0.6rem;
+            }
+            
+            .social-links a {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+            
+            .copyright p {
+                font-size: 0.7rem;
             }
         }
         
         @media (max-width: 320px) {
+            .container {
+                width: 98%;
+                padding: 0 2px;
+            }
+            
+            header {
+                background: linear-gradient(135deg, var(--burnt-orange) 0%, #D47A2A 50%, var(--dark-brown) 100%);
+                box-shadow: 0 4px 20px rgba(196, 109, 38, 0.3);
+                position: fixed;
+                width: 100vw;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                backdrop-filter: blur(10px);
+                min-height: 65px;
+                margin: 0;
+                padding: 0;
+            }
+            
             .hero h1 {
                 font-size: 1.8rem;
             }
             
             .section-title h2 {
                 font-size: 1.6rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .section-title p {
+                font-size: 0.75rem;
+                max-width: 300px;
+            }
+            
+            .testimonials {
+                padding: 2rem 0;
+            }
+            
+            .testimonials-grid {
+                gap: 1rem;
+                padding: 0 0.5rem;
+            }
+            
+            .testimonial-card {
+                padding: 1rem;
+                border-radius: 10px;
+                margin-bottom: 0.6rem;
+            }
+            
+            .testimonial-text {
+                font-size: 0.9rem;
+                line-height: 1.3;
+                margin-bottom: 0.6rem;
+            }
+            
+            .testimonial-author {
+                font-size: 0.8rem;
+            }
+            
+            .service-card {
+                width: 300px;
+                height: 180px;
+                padding: 1.3rem 1rem;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin: 0 auto;
+            }
+            
+            .service-img {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                margin-bottom: 0.8rem;
             }
             
             .service-content h3 {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
             }
             
             .service-content p {
-                font-size: 0.85rem;
+                font-size: 0.75rem;
+                line-height: 1.2;
+            }
+            
+            .booking-form {
+                padding: 0.8rem;
+            }
+            
+            .booking-form h3 {
+                font-size: 1rem;
+            }
+            
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 6px;
+                font-size: 0.75rem;
+            }
+            
+            .btn {
+                padding: 6px 16px;
+                font-size: 0.75rem;
+            }
+            
+            .about-content h2 {
+                font-size: 1.2rem;
+            }
+            
+            .about-content p {
+                font-size: 0.75rem;
+            }
+            
+            .footer-section h3 {
+                font-size: 0.9rem;
+            }
+            
+            .footer-section p {
+                font-size: 0.7rem;
+            }
+            
+            .social-links a {
+                width: 28px;
+                height: 28px;
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -646,28 +1560,35 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">
-                <img src="public/image/image.png" alt="Nailed By Nadzz Logo">
-                Nailed By Nadzz
-            </a>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav>
-                <ul id="menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="booking.html">Book Now</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="policies.html">Policies</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <div class="logo-container">
+                <a href="#" class="logo">
+                    <img src="public/image/image.png" alt="REVIVE STUDIO Logo">
+                    REVIVE STUDIO
+                </a>
+            </div>
+            <div class="nav-container">
+                <nav>
+                    <ul id="menu">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="booking.html">Book Now</a></li>
+                        <li><a href="policies.html">Policies</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="public/videos/Nadzzz vid.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
         <div class="container hero-content">
             <h1>Where Beauty Meets Excellence</h1>
             <p>Transform your nails and enhance your natural beauty with our professional nail art, manicures, and beauty services in Leeds.</p>
@@ -683,24 +1604,21 @@
                 <p>Professional nail and beauty treatments designed to make you feel confident and beautiful</p>
             </div>
             
-            
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-img">
                         <i class="fas fa-hand-sparkles"></i>
                     </div>
                     <div class="service-content">
-                        <h3>Manicure</h3>
-                        <p>Professional nail care including shaping, cuticle care, polish application, and nail art designs for beautiful, healthy nails.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <i class="fas fa-cut"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Hairstyling</h3>
-                        <p>Expert hairstyling services from cuts and styling to special occasion looks by our professional stylists.</p>
+                        <h3>Manicure & Nail Art</h3>
+                        <p class="web-description">Transform your hands with our expert nail care services and stunning artistic designs that reflect your unique style.</p>
+                        <p class="mobile-description">Professional nail care & nail art designs.</p>
+                        <ul class="service-features">
+                            <li>Gel & Acrylic Extensions</li>
+                            <li>Custom Nail Art Designs</li>
+                            <li>French & American Manicures</li>
+                            <li>Nail Repair & Maintenance</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="service-card">
@@ -708,8 +1626,31 @@
                         <i class="fas fa-palette"></i>
                     </div>
                     <div class="service-content">
-                        <h3>Makeup</h3>
-                        <p>Professional makeup application for everyday wear or special events by our certified makeup artists.</p>
+                        <h3>Professional Makeup</h3>
+                        <p class="web-description">Enhance your natural beauty with our professional makeup services for every occasion, from daily looks to special events.</p>
+                        <p class="mobile-description">Professional makeup for events & daily wear.</p>
+                        <ul class="service-features">
+                            <li>Bridal & Special Event Makeup</li>
+                            <li>Everyday & Professional Looks</li>
+                            <li>Color Matching & Consultation</li>
+                            <li>Long-lasting & Photo-ready</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Hairstyling & Styling</h3>
+                        <p class="web-description">Discover your perfect look with our expert hairstyling services, from precision cuts to elegant updos for any occasion.</p>
+                        <p class="mobile-description">Expert cuts, styling & special looks.</p>
+                        <ul class="service-features">
+                            <li>Precision Haircuts & Styling</li>
+                            <li>Bridal & Special Event Updos</li>
+                            <li>Blowouts & Hair Treatments</li>
+                            <li>Color Consultation & Styling</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -721,18 +1662,18 @@
     <section class="about" id="about">
         <div class="container">
             <div class="section-title">
-                <h2>About Nailed By Nadzz</h2>
+                <h2>About REVIVE STUDIO</h2>
             </div>
             <div class="about-container">
                 <div class="about-content">
                     <h2>Leeds' Premier Mid-Century Salon</h2>
-                    <p>Established in 2021, Nailed By Nadzz brings the timeless elegance of mid-century design to the beauty industry. Our salon is designed to be a cozy retreat where you can relax and be pampered.</p>
+                    <p>Established in 2021, REVIVE STUDIO brings the timeless elegance of mid-century design to the beauty industry. Our salon is designed to be a cozy retreat where you can relax and be pampered.</p>
                     <p>Our team of highly skilled professionals is dedicated to providing exceptional service using only the highest quality products. We believe that beauty treatments should be both luxurious and accessible.</p>
                     <p>Located in the heart of Leeds, our salon is easily accessible by public transport and has parking available nearby.</p>
                     <a href="#contact" class="btn">Visit Us</a>
                 </div>
                 <div class="about-image">
-                    <i class="fas fa-store"></i>
+                    <img src="https://i.ibb.co/B2P226mg/DD665893-D670-4998-8-FBB-09-FDA01-E62-FB.jpg" alt="DD665893-D670-4998-8-FBB-09-FDA01-E62-FB" border="0" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
         </div>
@@ -746,15 +1687,15 @@
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <p class="testimonial-text">"The best manicure I've ever had! The attention to detail and the cozy atmosphere made for a perfect afternoon."</p>
+                    <p class="testimonial-text">"The best manicure I've ever had! Perfect attention to detail."</p>
                     <p class="testimonial-author">- Sarah M.</p>
                 </div>
                 <div class="testimonial-card">
-                    <p class="testimonial-text">"I got my makeup done for my wedding at Nailed By Nadzz and I couldn't have been happier. The artist understood exactly what I wanted."</p>
+                    <p class="testimonial-text">"Perfect wedding makeup! The artist understood exactly what I wanted."</p>
                     <p class="testimonial-author">- Emily T.</p>
                 </div>
                 <div class="testimonial-card">
-                    <p class="testimonial-text">"As a regular client, I can confidently say that Nailed By Nadzz offers consistently excellent service in a beautiful setting."</p>
+                    <p class="testimonial-text">"Consistently excellent service in a beautiful setting."</p>
                     <p class="testimonial-author">- James L.</p>
                 </div>
             </div>
@@ -766,19 +1707,15 @@
         <div class="container">
             <div class="footer-container">
                 <div class="footer-section">
-                    <h3>Nailed By Nadzz</h3>
+                    <h3>REVIVE STUDIO</h3>
                     <p>Mid-century modern beauty salon in Leeds offering manicure, hairstyling, and makeup services.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/nailedbynadzz/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h3>Contact Us</h3>
                     <p><i class="fas fa-map-marker-alt"></i> 2a Church Road, Leeds, Armley LS12 1TZ</p>
-                    <p><i class="fas fa-phone"></i> +44 113 123 4567</p>
                     <p><i class="fas fa-envelope"></i> nailedbynadzzbookings@gmail.com</p>
                 </div>
                 <div class="footer-section">
@@ -788,7 +1725,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Nailed By Nadzz. All rights reserved.</p>
+                <p>&copy; 2025 REVIVE STUDIO. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -802,27 +1739,115 @@
             menu.classList.toggle('show');
         });
         
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
+        
+        // Navigation functionality for all menu items
+        document.querySelectorAll('#menu a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                console.log('Menu link clicked:', href); // Debug log
                 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                // Close mobile menu
+                menu.classList.remove('show');
                 
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                // If it's a section link (starts with #)
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href;
+                    const targetElement = document.querySelector(targetId);
+                    console.log('Target element found:', targetElement); // Debug log
                     
-                    // Close mobile menu if open
-                    menu.classList.remove('show');
+                    if (targetElement) {
+                        // Add a small delay to ensure menu closes before scrolling
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }, 100);
+                    } else {
+                        console.log('Target element not found for:', targetId);
+                    }
                 }
+                // If it's a page link, let it navigate normally
+                // (no preventDefault needed)
             });
         });
         
+        // Auto slideshow for testimonials only (mobile)
+        function initAutoSlideshow(containerSelector, slideWidth = 280) {
+            const container = document.querySelector(containerSelector);
+            if (!container) return;
+            
+            let currentIndex = 0;
+            const slides = container.children;
+            const totalSlides = slides.length;
+            const isMobile = window.innerWidth <= 768;
+            
+            // Only apply slideshow to mobile and testimonials
+            if (!isMobile || totalSlides <= 1 || containerSelector === '.services-grid') return;
+            
+            let interval;
+            
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                const scrollPosition = currentIndex * (slideWidth + 16); // 16px for gap
+                container.scrollTo({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+            }
+            
+            function startSlideshow() {
+                if (interval) clearInterval(interval);
+                interval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+            }
+            
+            function stopSlideshow() {
+                if (interval) {
+                    clearInterval(interval);
+                    interval = null;
+                }
+            }
+            
+            // Start auto slideshow
+            startSlideshow();
+            
+            // Pause on hover/touch
+            container.addEventListener('mouseenter', stopSlideshow);
+            container.addEventListener('mouseleave', startSlideshow);
+            
+            // Pause on touch interaction
+            let touchStartTime;
+            container.addEventListener('touchstart', () => {
+                touchStartTime = Date.now();
+                stopSlideshow();
+            });
+            
+            container.addEventListener('touchend', () => {
+                const touchDuration = Date.now() - touchStartTime;
+                if (touchDuration < 200) { // Quick tap, resume slideshow
+                    setTimeout(() => {
+                        startSlideshow();
+                    }, 1000);
+                }
+            });
+        }
+        
+        // Initialize auto slideshow for testimonials only
+        initAutoSlideshow('.testimonials-grid', 280);
+        
+        // Reinitialize on window resize
+        window.addEventListener('resize', () => {
+            setTimeout(() => {
+                initAutoSlideshow('.testimonials-grid', 280);
+            }, 100);
+        });
         
         // Form submission
         const form = document.getElementById('appointment-form');
