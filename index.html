@@ -362,17 +362,48 @@
             z-index: -1;
         }
         
-        /* Additional overlay to hide any remaining play buttons */
-        .hero::after {
-            content: '';
+        /* Custom play button overlay */
+        .hero-play-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: transparent;
-            z-index: 1;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: opacity 0.3s ease;
+        }
+        
+        .hero-play-overlay.hidden {
+            opacity: 0;
             pointer-events: none;
+        }
+        
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .play-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        .play-button i {
+            font-size: 24px;
+            color: var(--burnt-orange);
+            margin-left: 4px; /* Slight offset to center the play icon */
         }
         
         .hero-content {
@@ -1642,11 +1673,16 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" muted loop playsinline preload="metadata">
             <source src="public/videos/Nadzzz vid.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
+        <div class="hero-play-overlay" id="play-overlay">
+            <div class="play-button" id="play-button">
+                <i class="fas fa-play"></i>
+            </div>
+        </div>
         <div class="container hero-content">
             <h1>Where Beauty Meets Excellence</h1>
             <p>Transform your nails and enhance your natural beauty with our professional nail art, manicures, and beauty services in Leeds.</p>
@@ -1924,59 +1960,68 @@
             dateInput.setAttribute('min', today);
         }
         
-        // Force video autoplay on mobile and hide play button
+        // Video and play button handling
         const heroVideo = document.querySelector('.hero-video');
-        if (heroVideo) {
-            // Disable all video controls immediately
+        const playOverlay = document.getElementById('play-overlay');
+        const playButton = document.getElementById('play-button');
+        
+        if (heroVideo && playOverlay && playButton) {
+            // Disable all video controls
             heroVideo.controls = false;
             heroVideo.controlsList = 'nodownload nofullscreen noremoteplayback';
             heroVideo.disablePictureInPicture = true;
             heroVideo.style.pointerEvents = 'none';
-            
-            // Ensure video is muted for autoplay compliance
             heroVideo.muted = true;
             heroVideo.volume = 0;
             
-            // Try to play the video immediately
+            // Function to play video and hide overlay
             const playVideo = () => {
                 heroVideo.play().then(() => {
                     console.log('Video playing successfully');
+                    playOverlay.classList.add('hidden');
                 }).catch(error => {
-                    console.log('Autoplay prevented:', error);
+                    console.log('Play failed:', error);
                 });
             };
             
-            // Try to play immediately
+            // Function to pause video and show overlay
+            const pauseVideo = () => {
+                heroVideo.pause();
+                playOverlay.classList.remove('hidden');
+            };
+            
+            // Try autoplay first
             playVideo();
             
-            // Try again when video is loaded
-            heroVideo.addEventListener('loadeddata', playVideo);
-            heroVideo.addEventListener('canplay', playVideo);
+            // If autoplay fails, show play button
+            heroVideo.addEventListener('loadeddata', () => {
+                if (heroVideo.paused) {
+                    playOverlay.classList.remove('hidden');
+                }
+            });
             
-            // Try on any user interaction
+            // Handle play button click
+            playButton.addEventListener('click', playVideo);
+            playOverlay.addEventListener('click', playVideo);
+            
+            // Handle video events
+            heroVideo.addEventListener('play', () => {
+                playOverlay.classList.add('hidden');
+            });
+            
+            heroVideo.addEventListener('pause', () => {
+                playOverlay.classList.remove('hidden');
+            });
+            
+            // Try to play on any user interaction
             const tryPlayOnInteraction = () => {
-                heroVideo.play().then(() => {
-                    console.log('Video playing after interaction');
-                    // Remove event listeners after successful play
-                    document.removeEventListener('touchstart', tryPlayOnInteraction);
-                    document.removeEventListener('click', tryPlayOnInteraction);
-                }).catch(e => console.log('Play failed after interaction:', e));
+                if (heroVideo.paused) {
+                    playVideo();
+                }
             };
             
             document.addEventListener('touchstart', tryPlayOnInteraction, { once: false });
             document.addEventListener('click', tryPlayOnInteraction, { once: false });
-            
-            // Force hide any remaining controls
-            const hideControls = () => {
-                heroVideo.style.outline = 'none';
-                heroVideo.style.border = 'none';
-                // Remove any webkit controls
-                heroVideo.setAttribute('webkit-playsinline', 'true');
-                heroVideo.setAttribute('playsinline', 'true');
-            };
-            
-            hideControls();
-            heroVideo.addEventListener('loadedmetadata', hideControls);
         }
     </script>
 </body>
