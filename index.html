@@ -362,49 +362,6 @@
             z-index: -1;
         }
         
-        /* Custom play button overlay */
-        .hero-play-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            transition: opacity 0.3s ease;
-        }
-        
-        .hero-play-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        .play-button {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .play-button:hover {
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 1);
-        }
-        
-        .play-button i {
-            font-size: 24px;
-            color: var(--burnt-orange);
-            margin-left: 4px; /* Slight offset to center the play icon */
-        }
         
         .hero-content {
             max-width: 800px;
@@ -1673,16 +1630,11 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <video class="hero-video" muted loop playsinline preload="metadata">
+        <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
             <source src="public/videos/Nadzzz vid.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
-        <div class="hero-play-overlay" id="play-overlay">
-            <div class="play-button" id="play-button">
-                <i class="fas fa-play"></i>
-            </div>
-        </div>
         <div class="container hero-content">
             <h1>Where Beauty Meets Excellence</h1>
             <p>Transform your nails and enhance your natural beauty with our professional nail art, manicures, and beauty services in Leeds.</p>
@@ -1960,68 +1912,72 @@
             dateInput.setAttribute('min', today);
         }
         
-        // Video and play button handling
+        // Aggressive video autoplay for iOS
         const heroVideo = document.querySelector('.hero-video');
-        const playOverlay = document.getElementById('play-overlay');
-        const playButton = document.getElementById('play-button');
         
-        if (heroVideo && playOverlay && playButton) {
-            // Disable all video controls
+        if (heroVideo) {
+            // Completely disable all controls and interactions
             heroVideo.controls = false;
             heroVideo.controlsList = 'nodownload nofullscreen noremoteplayback';
             heroVideo.disablePictureInPicture = true;
             heroVideo.style.pointerEvents = 'none';
             heroVideo.muted = true;
             heroVideo.volume = 0;
+            heroVideo.playsInline = true;
+            heroVideo.webkitPlaysInline = true;
             
-            // Function to play video and hide overlay
-            const playVideo = () => {
-                heroVideo.play().then(() => {
-                    console.log('Video playing successfully');
-                    playOverlay.classList.add('hidden');
-                }).catch(error => {
-                    console.log('Play failed:', error);
+            // Force play immediately
+            const forcePlay = () => {
+                heroVideo.play().catch(e => {
+                    console.log('Autoplay blocked, will retry on interaction');
                 });
             };
             
-            // Function to pause video and show overlay
-            const pauseVideo = () => {
-                heroVideo.pause();
-                playOverlay.classList.remove('hidden');
-            };
+            // Try multiple times with different events
+            forcePlay();
             
-            // Try autoplay first
-            playVideo();
+            // Try when video can play
+            heroVideo.addEventListener('canplay', forcePlay);
+            heroVideo.addEventListener('loadeddata', forcePlay);
+            heroVideo.addEventListener('loadedmetadata', forcePlay);
             
-            // If autoplay fails, show play button
-            heroVideo.addEventListener('loadeddata', () => {
+            // Try on any user interaction anywhere on the page
+            const playOnInteraction = () => {
                 if (heroVideo.paused) {
-                    playOverlay.classList.remove('hidden');
-                }
-            });
-            
-            // Handle play button click
-            playButton.addEventListener('click', playVideo);
-            playOverlay.addEventListener('click', playVideo);
-            
-            // Handle video events
-            heroVideo.addEventListener('play', () => {
-                playOverlay.classList.add('hidden');
-            });
-            
-            heroVideo.addEventListener('pause', () => {
-                playOverlay.classList.remove('hidden');
-            });
-            
-            // Try to play on any user interaction
-            const tryPlayOnInteraction = () => {
-                if (heroVideo.paused) {
-                    playVideo();
+                    heroVideo.play().then(() => {
+                        console.log('Video started playing after interaction');
+                    }).catch(e => {
+                        console.log('Still blocked:', e);
+                    });
                 }
             };
             
-            document.addEventListener('touchstart', tryPlayOnInteraction, { once: false });
-            document.addEventListener('click', tryPlayOnInteraction, { once: false });
+            // Multiple interaction events
+            document.addEventListener('touchstart', playOnInteraction, { passive: true });
+            document.addEventListener('touchend', playOnInteraction, { passive: true });
+            document.addEventListener('click', playOnInteraction, { passive: true });
+            document.addEventListener('scroll', playOnInteraction, { passive: true });
+            
+            // Try on page visibility change
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden && heroVideo.paused) {
+                    forcePlay();
+                }
+            });
+            
+            // Continuous retry every 2 seconds if still paused
+            const retryInterval = setInterval(() => {
+                if (heroVideo.paused) {
+                    forcePlay();
+                } else {
+                    clearInterval(retryInterval);
+                }
+            }, 2000);
+            
+            // Clear interval after 30 seconds
+            setTimeout(() => {
+                clearInterval(retryInterval);
+            }, 30000);
         }
     </script>
 </body>
